@@ -1,0 +1,35 @@
+{
+  "users": [
+    { "id": "u1", "name": "Santi", "email": "santi@art.com", "password": "..." },
+    { "id": "u2", "name": "Maria", "email": "maria@art.com", "password": "..." }
+  ],
+  
+  "artEvents": [
+    {
+      "id": "e_neca_001",
+      "name": "Richard Tuttle - 'Nothing'",
+      "date": "2026-03-12",
+      "createdBy": "u1",
+      "interested": ["u1", "u2"]
+    }
+  ],
+
+  "friendships": [
+    {
+      "id": "f_99",
+      "senderId": "u1",
+      "receiverId": "u2",
+      "status": "accepted" // Puede ser "pending", "accepted" o "rejected"
+    }
+],
+
+  "invitations": [
+    {
+      "id": "inv_abc123",
+      "eventId": "e_neca_001",
+      "fromUserId": "u1",
+      "toUserId": "u2",
+      "status": "accepted" // Puede ser "pending", "accepted" o "rejected" -> Si pending se recive una notificacion
+    }
+  ]
+}
