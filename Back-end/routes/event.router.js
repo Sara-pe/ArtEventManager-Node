@@ -6,21 +6,22 @@ eventRouter.route('/')
     .get(eventController.getAll)
     .post(eventController.insert)
 
-eventRouter.route('/:id')
+eventRouter.route('/:id') //id=eventId
     .get(eventController.getById)
     .put(eventController.update)
     .delete(eventController.delete)
-    .patch(eventController.updateStatus)
 
-eventRouter.get('/user/:name', eventController.getByUser)
+eventRouter.get('/user/:idUser', eventController.getByUser)
 
 // Invitations
 
 eventRouter.route('/user/:id/invitations') 
  .get(eventController.getInvitations) //get all the invitations by user from and to
- .post(eventController.insertInvitation) //create a new invitation from an user to another user
 
-eventRouter.route('/:id/invitations/:invitationId') 
+eventRouter.route('/:id/invitations') 
+ .post(eventController.insertInvitation) //create a new invitation 
+
+eventRouter.route('/:eventId/invitations/:invitationId') 
  .patch(eventController.updateInvitation) //accept or reject and invitation
 
 module.exports = eventRouter;

@@ -50,7 +50,7 @@ const fakeEventService = {
 
     delete: (id) => {
 
-        const event = events.findIndex(event => event.id === id);
+        const index = events.findIndex(event => event.id === id);
         if (index === -1) {
             return false;
         }
@@ -59,14 +59,16 @@ const fakeEventService = {
     },
 
     findInvitationsFrom: (userId) => {
-        return events.filter(event => event.invitations.from === userId);
+
+        const allInvitations = events.flatMap(event => event.invitations);
+        return allInvitations.filter(invitation => invitation.from === userId);
     },
 
     findInvitationsTo: (userId) => {
-        return events.filter(event => event.invitations.to === userId);
+        const allInvitations = events.flatMap(event => event.invitations);
+        return allInvitations.filter(invitation => invitation.to === userId);
     },
-
-    createInvitation: (eventId, invitationToAdd) => {
+    createInvitation: (eventId, invitationData) => {
         // 1. Find event of the invitation
         const event = events.find(e => e.id === parseInt(eventId));
 
@@ -84,9 +86,9 @@ const fakeEventService = {
         // 3. Create object of the invitation
         const newInvitation = {
             invitationId: idMax + 1,
-            from: invitationToAdd.from,
-            to: invitationToAdd.to,
-            status: "pending" // Por defecto siempre empieza en pendiente
+            from: invitationData.from,
+            to: invitationData.to,
+            status: "pending"
         };
 
         // 4. Add the invitation
@@ -95,8 +97,19 @@ const fakeEventService = {
         return newInvitation;
     },
 
-    updateInvitation: (idInvitation, invitation) => {
-        invitationToUpdate.status = invitation.status;
+    updateInvitation: (eventId, invitationId, status) => {
+
+        const event = events.find(e => e.id === parseInt(eventId));
+        if (!event) return null;
+
+        const invitationToUpdate = event.invitations.find(
+            inv => inv.invitationId === parseInt(invitationId)
+        );
+
+        if (!invitationToUpdate) return null;
+
+        invitationToUpdate.status = status;
+
         return invitationToUpdate;
     },
 
