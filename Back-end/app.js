@@ -3,39 +3,12 @@ const express = require('express');
 const server = express(); 
 
 // ? Recuperate environment variables :
-const { PORT, DB_CONNECTION } = process.env;
+const { PORT } = process.env;
+// Add DB
 
 // ? To configure the API to parse incoming JSON requests
 server.use(express.json());
 
-// MIDDLEWARE
-const logMiddleware = require('./middlewares/log.middleware');
-server.use(logMiddleware());
-// ------------------------------------------------------
-
-
-// CONNECTION DB
-
-const mongoose = require("mongoose");
-server.use( async (req, res, next) => {
-    
-    try {
-
-    
-        await mongoose.connect(DB_CONNECTION, { dbName : 'ArtEventManager' });   //! ----- Use this name on MongoDB----
-        console.log("💾 Successfully connected to the DB !");
-
-        next(); 
-
-    } catch(err){
-
-        console.log(`❌ Connection Failed \n[Reason]\n ${err}`);
-
-        res.status(500).json( { statusCode : 500 , message : 'Impossible to connect to the DB'  } );
-    
-    }
-})
-// -------------------------------------------------
 
 
 // 2) Requests - ROUTES are in /routes

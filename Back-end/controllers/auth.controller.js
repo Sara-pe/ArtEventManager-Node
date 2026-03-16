@@ -1,4 +1,4 @@
-const authService = require("../services/mongo/auth.service");
+//const authService = require("../services/auth.service");
 const jwtUtils = require('../utils/jwt.utils');
 
 //Jsonwebtoken: Library that generates a security token stored in local storage, so the user doesn't have to log in every minute
