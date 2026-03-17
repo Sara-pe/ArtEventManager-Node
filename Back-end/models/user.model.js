@@ -1,7 +1,8 @@
 const { Schema, model, Types } = require('mongoose');
-const User = require('./user.model');
 
-const eventSchema = new Schema(
+const Event = require('./event.model');
+
+const userSchema = new Schema(
     {
         name: {
             type: String,
@@ -9,37 +10,40 @@ const eventSchema = new Schema(
             trim: true
         },
 
-        at: {
+         lastname: {
             type: String,
             required: true,
             trim: true
         },
 
-        address: {
+        email: {
+            type: String,
+            required: true,
+            trim: true,
+            unique : true
+        },
+
+        password: {
             type: String,
             required: true,
             trim: true
         },
 
-        createdBy: {
-            type: Types.ObjectId,
-            ref: 'User',
-            required: true
+        role : {
+            type : String,
+            required : true,
+            enum : ['User', 'Admin'], 
+            default : 'User' 
         },
 
-        interested: [{
+        friends: [{
             type: Types.ObjectId,
             ref: 'User'
         }],
 
-
-        invitations: [
+        friendRequests: [
             {
                 from: {
-                    type: Types.ObjectId,
-                    ref: 'User'
-                },
-                to: {
                     type: Types.ObjectId,
                     ref: 'User'
                 },
@@ -48,10 +52,12 @@ const eventSchema = new Schema(
         ]
     },
     {
-        collection: 'Event',
+        collection: 'User',
         timestamps: true
     });
 
-const Event = model('Event', eventSchema);
+    // ref: 'User' as string, populate later
 
-module.exports = Event;
+const User = model('User', userSchema);
+
+module.exports = User;

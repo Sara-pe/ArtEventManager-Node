@@ -13,9 +13,14 @@ userRouter.get('/:id', (req, res) => {
     res.send(`Hereby the user number ${id}`)
 })
 
-//post localhost:3000/api/users/
-userRouter.post('/', (req, res) => {
-    res.send('User succesfully added', 200)
-})
+// TO DO 
+
+// 1. getAll users - //localhost:3000/api/users
+
+// 2. getAllFriends by User - //localhost:3000/api/users/XX
+// 3. deleteFriends by User 
+// 4. getAllFriendRequests by User 
+// 5. patchFriendRequest by User and FriendRequest - If accepted user.from becomes friend
+
 
 module.exports = userRouter;
