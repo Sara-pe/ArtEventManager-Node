@@ -110,7 +110,18 @@ const fakeEventService = {
 
         invitationToUpdate.status = status;
 
+        if (status === 'accepted') {
+
+            const userId = invitationToUpdate.to;
+
+            if (!event.interested.includes(userId)) {
+                event.interested.push(userId);
+            }
+        }
+
         return invitationToUpdate;
+
+
     },
 
 }

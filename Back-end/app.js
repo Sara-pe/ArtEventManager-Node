@@ -3,10 +3,37 @@ const express = require('express');
 const server = express(); 
 
 // ? Recuperate environment variables :
-const { PORT } = process.env;
-// Add DB
+const { PORT, DB_CONNECTION} = process.env;
 
-// ? To configure the API to parse incoming JSON requests
+// Middleware log
+const logMiddleware = require('./middlewares/log.middleware');
+server.use(logMiddleware());
+
+// 4) Connection DB 
+
+const mongoose = require("mongoose");
+server.use( async (req, res, next) => {
+
+    try {
+
+        await mongoose.connect(DB_CONNECTION, { dbName : 'EventPlanner'});
+        console.log("💾 Successfully connected to the DB !");
+
+        next(); 
+
+    } catch(err){
+
+
+        console.log(`❌ Connection Failed \n[Reason]\n ${err}`);
+
+        res.status(500).json( { statusCode : 500 , message : 'Connecting to the DB is not possible'  } );
+    
+    }
+})
+
+
+
+// ? Configuring the API to parse incoming JSON requests
 server.use(express.json());
 
 
