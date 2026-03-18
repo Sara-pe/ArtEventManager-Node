@@ -1,7 +1,7 @@
 const eventRouter = require('express').Router();
 const eventController = require('../controllers/event.controller');
 
-// Specific routes first
+// Specific routes
 eventRouter.get('/user/:idUser', eventController.getByUser)
 
 eventRouter.route('/user/:id/invitations') 

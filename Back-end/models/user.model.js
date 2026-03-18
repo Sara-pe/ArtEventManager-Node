@@ -43,6 +43,7 @@ const userSchema = new Schema(
 
         friendRequests: [
             {
+                _id: { type: Types.ObjectId, default: () => new Types.ObjectId() },
                 from: {
                     type: Types.ObjectId,
                     ref: 'User'

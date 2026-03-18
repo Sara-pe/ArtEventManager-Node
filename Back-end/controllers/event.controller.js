@@ -1,7 +1,7 @@
 
 const { Request, Response } = require('express')
 
-const fakeEventService = require("../services/FakeDB/fakeEvent.service");
+//const fakeEventService = require("../services/FakeDB/fakeEvent.service");
 const eventService = require('../services/mongo/event.service');
 
 const eventController = {

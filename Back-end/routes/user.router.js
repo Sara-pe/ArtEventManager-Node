@@ -1,26 +1,23 @@
-const express = require('express');
-const userRouter = express.Router();
+const userRouter = require('express').Router();
+const userController = require('../controllers/user.controller');
 
-//localhost:3000/api/users
-userRouter.get('/', (req, res) => {
-    res.send('Hereby all the users', 200)
-})
+userRouter.route('/')
+    .get(userController.getAll)
 
-// :id dinamic segment
-//localhost:3000/api/users/XX
-userRouter.get('/:id', (req, res) => {
-    const id = req.params.id;
-    res.send(`Hereby the user number ${id}`)
-})
+userRouter.route('/:id') 
+    .get(userController.getById) 
 
-// TO DO 
 
-// 1. getAll users - //localhost:3000/api/users
+userRouter.route('/:id/friends/:idFriend') 
+    .delete(userController.deleteFriend) 
 
-// 2. getAllFriends by User - //localhost:3000/api/users/XX
-// 3. deleteFriends by User 
-// 4. getAllFriendRequests by User 
-// 5. patchFriendRequest by User and FriendRequest - If accepted user.from becomes friend
+//userRouter.route('/:id/friendRequest') 
+//    .get(userController.getAllFriendRequest) 
 
+//userRouter.route('/:id/friends') 
+//    .get(userController.getAllFriends) 
+
+userRouter.route('/:id/friendRequests/:idFriendRequest') 
+    .patch(userController.updateFriendRequest) 
 
 module.exports = userRouter;
