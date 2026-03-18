@@ -1,4 +1,4 @@
-//const authService = require("../services/auth.service");
+const authService = require("../services/mongo/auth.service");
 const jwtUtils = require('../utils/jwt.utils');
 
 //Jsonwebtoken: Library that generates a security token stored in local storage, so the user doesn't have to log in every minute
@@ -10,19 +10,19 @@ const authController = {
         try {
 
             const userToAdd = req.body;
-            if(await authService.emailAlreadyExists(userToAdd.email)){
+            if (await authService.emailAlreadyExists(userToAdd.email)) {
 
-                res.status(409).json({ statusCode : 409, message : 'This email already exists' });
+               return res.status(409).json({ statusCode: 409, message: 'This email already exists' });
 
             }
 
             const userCreated = await authService.create(userToAdd);
 
             res.location(`/api/user/${userCreated._id}`);
-            
+
             res.status(201).json({
                 id: userCreated._id,
-                firstname: userCreated.firstname,
+                name: userCreated.name,
                 lastname: userCreated.lastname
             });
 
@@ -35,31 +35,30 @@ const authController = {
     login: async (req, res) => {
 
         try {
-          
-            const credentials = req.body;
 
+            const credentials = req.body;
             const userFound = await authService.findByCredentials(credentials);
 
-            if(!userFound) {
-                res.status(401).json({ statusCode : 401, message : 'Les informations de connexion ne sont pas bonnes' });
+            if (!userFound) {
+                res.status(401).json({ statusCode: 401, message: 'Les informations de connexion ne sont pas bonnes' });
             }
             else {
-                // Create a token
-                const token = await jwtUtils.generate(userFound);
+                //Create a token
+               const token = await jwtUtils.generate(userFound);
 
                 // We send the info + token
-                res.status(200).json( { 
-                    id : userFound._id, 
-                    firstname : userFound.firstname, 
-                    lastname : userFound.lastname,
+                res.status(200).json({
+                    id: userFound._id,
+                    name: userFound.name,
+                    lastname: userFound.lastname,
                     token
-                } );
+                });
             }
 
-        }catch(err){
+        } catch (err) {
             console.log(err);
             res.sendStatus(500);
-            
+
         }
     }
 }
