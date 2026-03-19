@@ -1,27 +1,30 @@
 const eventRouter = require('express').Router();
 const eventController = require('../controllers/event.controller');
 
+const authenticationMiddleware = require('../middlewares/auth/authentication.middleware');
+const userAuthorizationMiddleware = require('../middlewares/auth/userAuthorization.middleware');
+
 // Specific routes
-eventRouter.get('/user/:idUser', eventController.getByUser)
+eventRouter.get('/user/:idUser', authenticationMiddleware(), userAuthorizationMiddleware(), eventController.getByUser)
 
 eventRouter.route('/user/:id/invitations') 
-    .get(eventController.getInvitations) //get all the invitations by user from and to
+    .get(authenticationMiddleware(), userAuthorizationMiddleware(), eventController.getInvitations) //get all the invitations by user from and to
 
 // Generic routes
 eventRouter.route('/')
     .get(eventController.getAll)
-    .post(eventController.insert)
+    .post(authenticationMiddleware(), eventController.insert)
 
 eventRouter.route('/:id') //id=eventId
-    .get(eventController.getById)
-    .put(eventController.update)
-    .delete(eventController.delete)
+    .get(authenticationMiddleware(), eventController.getById)
+    .put(authenticationMiddleware(), eventController.update)
+    .delete(authenticationMiddleware(), eventController.delete)
 
 // Events invitations - specific routes 
 eventRouter.route('/:id/invitations') 
-    .post(eventController.insertInvitation) //create a new invitation 
+    .post(authenticationMiddleware(), eventController.insertInvitation) //create a new invitation 
 
 eventRouter.route('/:eventId/invitations/:invitationId') 
-    .patch(eventController.updateInvitation) //accept or reject an invitation
+    .patch(authenticationMiddleware(), eventController.updateInvitation) //accept or reject an invitation
 
 module.exports = eventRouter;

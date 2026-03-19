@@ -1,15 +1,18 @@
 const userRouter = require('express').Router();
 const userController = require('../controllers/user.controller');
 
+const authenticationMiddleware = require('../middlewares/auth/authentication.middleware');
+const userAuthorizationMiddleware = require('../middlewares/auth/userAuthorization.middleware');
+
 userRouter.route('/')
-    .get(userController.getAll)
+    .get(authenticationMiddleware(), userController.getAll)
 
 userRouter.route('/:id') 
-    .get(userController.getById) 
+    .get(authenticationMiddleware(), userAuthorizationMiddleware(), userController.getById) 
 
 
 userRouter.route('/:id/friends/:idFriend') 
-    .delete(userController.deleteFriend) 
+    .delete(authenticationMiddleware(), userAuthorizationMiddleware(), userController.deleteFriend) 
 
 //userRouter.route('/:id/friendRequest') 
 //    .get(userController.getAllFriendRequest) 
@@ -18,6 +21,6 @@ userRouter.route('/:id/friends/:idFriend')
 //    .get(userController.getAllFriends) 
 
 userRouter.route('/:id/friendRequests/:idFriendRequest') 
-    .patch(userController.updateFriendRequest) 
+    .patch(authenticationMiddleware(), userAuthorizationMiddleware(), userController.updateFriendRequest) 
 
 module.exports = userRouter;
