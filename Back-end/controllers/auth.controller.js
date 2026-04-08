@@ -40,7 +40,7 @@ const authController = {
             const userFound = await authService.findByCredentials(credentials);
 
             if (!userFound) {
-                res.status(401).json({ statusCode: 401, message: 'Les informations de connexion ne sont pas bonnes' });
+                res.status(401).json({ statusCode: 401, message: 'The log in information is not correct' });
             }
             else {
                 //Create a token
