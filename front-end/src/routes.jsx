@@ -1,4 +1,5 @@
 import App from "./App"
+import PlainLayout from "./PlainLayout"
 import {Login} from "./features/auth/Login"
 import {Register} from "./features/auth/Register"
 
