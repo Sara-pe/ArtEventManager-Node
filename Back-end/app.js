@@ -9,6 +9,11 @@ const { PORT, DB_CONNECTION} = process.env;
 const logMiddleware = require('./middlewares/log.middleware');
 server.use(logMiddleware());
 
+//* ------Middleware cors: Connection front-end -----------------------------------
+const cors = require('cors');
+server.use(cors()) //open access 
+
+
 // 4) Connection DB 
 
 const mongoose = require("mongoose");
