@@ -44,12 +44,6 @@
 }
 
 
-.subtitle {
-  color: var(--dark-gray);
-  margin: 0;
-  line-height: normal;
-}
-
 /* ---------- Divider ---------- */
 .divider {
   display: flex;

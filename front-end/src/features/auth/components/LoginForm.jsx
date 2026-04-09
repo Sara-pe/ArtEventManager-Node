@@ -25,6 +25,8 @@ const handleLoginSubmit = async (formData) => {
         //Receive a reply from the service 
         const reply = await authService.login(data);
 
+        console.log(reply.token);
+
         setToken (reply.token);
         navigate('/');
 }

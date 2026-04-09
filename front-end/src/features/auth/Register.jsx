@@ -15,7 +15,7 @@ export const Register = () => {
                     {/* Header */}
                     <div className={styles.header}>
                         <h1>Create Account</h1>
-                        <p className={styles.subtitle}>Join the art community</p>
+                         <p className='subtitle'>Join the art community</p>
                     </div>
 
                     <RegisterForm />

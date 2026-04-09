@@ -15,7 +15,7 @@ export const Login = () => {
                 {/* Header */}
                 <div className={styles.header}>
                     <h1>Welcome back</h1>
-                    <p className={styles.subtitle}>Sign in to your account</p>
+                    <p className='subtitle'>Sign in to your account</p>
                 </div>
 
                 <LoginForm />
