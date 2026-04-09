@@ -13,6 +13,8 @@ server.use(logMiddleware());
 const cors = require('cors');
 server.use(cors()) //open access 
 
+// ? Configuring the API to parse incoming JSON requests
+server.use(express.json());
 
 // 4) Connection DB 
 
@@ -38,8 +40,7 @@ server.use( async (req, res, next) => {
 
 
 
-// ? Configuring the API to parse incoming JSON requests
-server.use(express.json());
+
 
 
 
