@@ -16,7 +16,7 @@ export const RegisterForm = () => {
 
         //Call the service 
         await authService.register(data);
-        navigate('/');
+        navigate('/auth/login');
     }
 
     return (
