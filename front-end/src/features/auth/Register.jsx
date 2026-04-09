@@ -1,10 +1,9 @@
 
 import { RegisterForm } from './components/RegisterForm'
-import styles from './Register.module.css'
+import styles from './Auth.module.css'
 
 export const Register = () => {
     return (
-        <>
             <div className={styles.page}>
                 <div className={styles.container}>
 
@@ -23,6 +22,6 @@ export const Register = () => {
 
                 </div>
             </div>
-        </>
+        
     )
 }

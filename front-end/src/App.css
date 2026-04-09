@@ -12,3 +12,14 @@ h1 {
   margin: 0;
   line-height: normal;
 }
+
+p {
+  font-weight: 400;
+  font-size: 12px
+}
+
+:root {
+  --dark-gray: #808080;
+}
+
+

@@ -14,7 +14,7 @@
   padding-top: 120px;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 24px;
 }
 
 /* ---------- Logo ---------- */
@@ -45,9 +45,7 @@
 
 
 .subtitle {
-  font-weight: 400;
-  font-size: 12px;
-  color: #808080;
+  color: var(--dark-gray);
   margin: 0;
   line-height: normal;
 }
@@ -74,12 +72,21 @@
   flex-shrink: 0;
 }
 
+
+
 /* ---------- Form ---------- */
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 100%;
+}
+
+.btnFields{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%; 
 }
 
 .fields {
@@ -99,7 +106,7 @@
 label {
   font-weight: 400;
   font-size: 12px;
-  color: #808080;
+  color: var(--dark-gray);
   line-height: normal;
 }
 
@@ -119,7 +126,7 @@ input {
 }
 
 .input::placeholder {
-  color: #808080;
+  color: var(--dark-gray);
 }
 
 .input:focus {
@@ -146,17 +153,15 @@ input {
   opacity: 0.85;
 }
 
-/* ---------- Login prompt ---------- */
-.loginPrompt {
-  font-weight: 400;
-  font-size: 12px;
-  color: #808080;
+/* ---------- Login/Signin prompt ---------- */
+.switchPrompt {
+  color: var(--dark-gray);
   text-align: center;
   margin: 0;
   line-height: normal;
 }
 
-.loginLink {
+.switchLink {
   font-weight: 600;
   font-size: 12px;
   color: #000000;
@@ -164,7 +169,7 @@ input {
  text-decoration: none;
 }
 
-.loginLink:hover {
+.switchLink:hover {
   text-decoration: underline;
 }
 
