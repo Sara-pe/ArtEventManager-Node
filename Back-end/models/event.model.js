@@ -15,6 +15,23 @@ const eventSchema = new Schema(
             trim: true
         },
 
+        date: {
+            type: Date,
+            required: true,
+        },
+
+        hour: {
+            type: String,
+            required: true,
+            trim: true
+        },
+
+        type: {
+            type: String,
+            required: true,
+            trim: true
+        },
+
         address: {
             type: String,
             required: true,
