@@ -4,7 +4,7 @@ export const Header = () => {
 
 
 
-
+<div className="page" >
         <div className="header">
 
             <p className="logo">ARTFORM</p>
@@ -13,7 +13,7 @@ export const Header = () => {
 
         </div>
 
-
+</div>
 
     )
 }
