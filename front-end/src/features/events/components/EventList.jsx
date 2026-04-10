@@ -2,7 +2,10 @@ import eventService from '../../../service/event.service'
 import { useState, useEffect } from 'react'
 import { EventCard } from './EventCard'
 
-export const EventList = () => {
+import styles from '../Home.module.css'
+
+export const EventList = ({ onNmbEvents }) => {
+
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
@@ -31,18 +34,23 @@ export const EventList = () => {
 
     }, [])
 
-   
+    useEffect(() => {
+        if (data) {
+            onNmbEvents(data.created.length + data.interested.length)
+        }
+    }, [data])
+
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>Something went wrong</p>
     if (!data) return null
+
+    const allEvents = [...data.created, ...data.interested]
     
- const allEvents = [...data.created, ...data.interested]
-
     return (
-        <div>
+        <div className={styles.listCards}>
 
-            {data && allEvents.map(event => (
-                <EventCard key={event._id} event={event} />
+            {data && allEvents.map((event, index) => (
+                <EventCard key={event._id} event={event} index={index}/>
             ))
             }
 

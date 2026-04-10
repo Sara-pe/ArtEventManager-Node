@@ -1,0 +1,91 @@
+
+
+/* ---------- Layout ---------- */
+.page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.buttons button {
+    width: 50%;  
+        display: flex;
+padding: 8px 20px;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+gap: 4px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    width: 100%;
+  
+}
+
+.btnOn {
+
+background: #000;
+
+}
+
+
+.btnOn p:first-child {
+color: white;
+}
+
+.btnOn .nmb {
+display: flex;
+width: 20px;
+height: 20px;
+justify-content: center;
+align-items: center;
+border-radius: 50px;
+background: #FFF;
+ color: black; 
+}
+
+.btnOff {
+border: 1px solid #000;
+background: white;
+
+}
+
+.btnOff .nmb {
+display: flex;
+width: 20px;
+height: 20px;
+justify-content: center;
+align-items: center;
+border-radius: 50px;
+background:black;
+ color: #FFF; 
+}
+
+.btnOff p:first-child {
+
+color: black;
+}
+
