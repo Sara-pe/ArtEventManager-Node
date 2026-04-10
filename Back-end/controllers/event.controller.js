@@ -80,6 +80,8 @@ const eventController = {
        try {
        
         const eventToAdd = req.body;
+        eventToAdd.createdBy = req.user.id 
+        
         const addedEvent = await eventService.create(eventToAdd);
 
         res.location(`/api/events/${addedEvent.id}`);
