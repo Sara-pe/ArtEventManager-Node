@@ -236,6 +236,7 @@ const eventService = {
                         eventAt: event.at,
                         eventDate: event.date,
                         eventTime: event.hour,
+                        eventType: event.type,
                     }))
                 );
 
