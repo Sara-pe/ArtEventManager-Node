@@ -211,7 +211,7 @@ const eventService = {
 
    findInvitationsTo: async (userId) => {
         try {
-            const eventsInvitationFrom = await Event.find({ "invitations.to": userId })
+            const eventsInvitationTo = await Event.find({ "invitations.to": userId })
                 .populate({
                     path: 'createdBy',
                     select: { id: 1, name: 1, lastname: 1 }

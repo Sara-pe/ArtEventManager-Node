@@ -158,8 +158,8 @@ const eventController = {
 
         res.status(200).json({
             userId,
-            created: invitationsSent,
-            interested: invitationsReceived
+            invitationsSent: invitationsSent,
+            invitationsReceived: invitationsReceived
         });
 
             } catch (err) {
