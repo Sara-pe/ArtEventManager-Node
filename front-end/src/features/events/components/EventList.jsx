@@ -44,7 +44,15 @@ export const EventList = ({ onNmbEvents }) => {
     if (error) return <p>Something went wrong</p>
     if (!data) return null
 
-    const allEvents = [...data.created, ...data.interested]
+    // All events sorted from most recent
+
+    const allEvents = [...data.created, ...data.interested].sort((a, b) => {
+    if (!a.date) return 1
+    if (!b.date) return -1
+    return new Date(a.date) - new Date(b.date)
+})
+
+//a.date is a string  "2026-04-23T00:00:00.000Z" (deduction not possible) -> new Date(...) makes it a Date object ("2026-04-24")
     
     return (
         <div className={styles.listCards}>
