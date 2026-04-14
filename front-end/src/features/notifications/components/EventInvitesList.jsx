@@ -6,7 +6,7 @@ import { InviteCard } from './InviteCard'
 export const EventInvitesList = ({ onNmbInvites }) => {
 
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
     const [data, setData] = useState(null)
 
 

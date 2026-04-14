@@ -8,8 +8,7 @@ export const Notifications = () => {
 
     const [active, setActive] = useState(1)
     const [nmbInvites, setNmbInvites] = useState(null)
-
-
+    const [nmbRequests, setNmbRequests] = useState(null)
 
     return (
         <div>
@@ -27,7 +26,7 @@ export const Notifications = () => {
 
                         <button onClick={() => setActive(1)} className={(active === 1) ? styles.btnOn : styles.btnOff}>
                             <p>Friend Requests</p>
-                            <p className={styles.nmb}>4</p>
+                            <p className={styles.nmb}>{nmbRequests}</p>
                         </button>
 
                         <button onClick={() => setActive(2)} className={(active === 2) ? styles.btnOn : styles.btnOff}>
@@ -37,7 +36,7 @@ export const Notifications = () => {
                     </div>
 
                     <div className={active === 1 ? styles.visible : styles.hidden}>
-                        <FriendRequestsList />
+                        <FriendRequestsList onNmbRequests={setNmbRequests} />
                     </div>
 
                     <div className={active === 2 ? styles.visible : styles.hidden}>

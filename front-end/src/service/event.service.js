@@ -24,10 +24,7 @@ const eventService = {
     },
 
 
-
      getInvites: async () => {
-
-
         const token = getDefaultStore().get(saveAtom)
 
         const payload = JSON.parse(atob(token.split('.')[1]))

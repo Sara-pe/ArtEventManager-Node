@@ -8,7 +8,7 @@ export const EventList = ({ onNmbEvents }) => {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
 
 
     useEffect(() => {
@@ -19,13 +19,13 @@ export const EventList = ({ onNmbEvents }) => {
                 const events = await eventService.getAll()
                 console.log('events:', events)
                 setData(events);
-                setLoading(null)
-                setError(null)
+                setLoading(false)
+                setError(false)
 
             } catch (err) {
                 console.log('error:', err)
                 setData(null)
-                setLoading(null)
+                setLoading(false)
                 setError(true)
             }
         }
@@ -47,18 +47,18 @@ export const EventList = ({ onNmbEvents }) => {
     // All events sorted from most recent
 
     const allEvents = [...data.created, ...data.interested].sort((a, b) => {
-    if (!a.date) return 1
-    if (!b.date) return -1
-    return new Date(a.date) - new Date(b.date)
-})
+        if (!a.date) return 1
+        if (!b.date) return -1
+        return new Date(a.date) - new Date(b.date)
+    })
 
-//a.date is a string  "2026-04-23T00:00:00.000Z" (deduction not possible) -> new Date(...) makes it a Date object ("2026-04-24")
-    
+    //a.date is a string  "2026-04-23T00:00:00.000Z" (deduction not possible) -> new Date(...) makes it a Date object ("2026-04-24")
+
     return (
         <div className={styles.listCards}>
 
             {data && allEvents.map((event, index) => (
-                <EventCard key={event._id} event={event} index={index}/>
+                <EventCard key={event._id} event={event} index={index} />
             ))
             }
 
