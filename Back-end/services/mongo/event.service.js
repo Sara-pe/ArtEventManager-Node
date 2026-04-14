@@ -232,7 +232,10 @@ const eventService = {
                 .flatMap(event => event.invitations
                     .map(inv => ({
                         ...inv.toObject(),
-                        eventName: event.name
+                        eventName: event.name,
+                        eventAt: event.at,
+                        eventDate: event.date,
+                        eventTime: event.hour,
                     }))
                 );
 
