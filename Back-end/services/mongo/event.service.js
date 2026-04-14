@@ -228,7 +228,7 @@ const eventService = {
                     ]
                 });
 
-            return eventsInvitationFrom
+            return eventsInvitationTo
                 .flatMap(event => event.invitations
                     .map(inv => ({
                         ...inv.toObject(),
