@@ -148,7 +148,7 @@ color: white;
 }
 
 
-.btn-2{
+.btn-2 {
   display: flex;
 padding: 6px 20px;
 justify-content: center;
@@ -159,9 +159,13 @@ border: 1px solid #000;
   font-size: 12px
 }
 
+.btn-2:hover {
+/*! TO DO */
+}
+
 .btn-3 {
   display: flex;
-padding: 12px 20px;
+padding: 6px 20px;
 justify-content: center;
 align-items: center;
 border-radius: 20px;
@@ -170,6 +174,10 @@ color: white;
 width: 100%;
  font-weight: 400;
   font-size: 12px
+}
+
+.btn-3:hover {
+/*! TO DO */
 }
 
 

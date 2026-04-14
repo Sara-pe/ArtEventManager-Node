@@ -1,12 +1,15 @@
 import styles from './Notifications.module.css'
 import { FriendRequestsList } from './components/FriendRequestsList'
 import { EventInvitesList } from './components/EventInvitesList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const Notifications = () => {
 
 
     const [active, setActive] = useState(1)
+    const [nmbInvites, setNmbInvites] = useState(null)
+
+
 
     return (
         <div>
@@ -29,15 +32,18 @@ export const Notifications = () => {
 
                         <button onClick={() => setActive(2)} className={(active === 2) ? styles.btnOn : styles.btnOff}>
                             <p>Event Invites</p>
-                            <p className={styles.nmb} >2</p>
+                            <p className={styles.nmb} >{nmbInvites}</p>
                         </button>
                     </div>
-                    {(active === 1) &&
-                        <FriendRequestsList />}
 
-                    {(active === 2) &&
-                        <EventInvitesList />}
+                    <div className={active === 1 ? styles.visible : styles.hidden}>
+                        <FriendRequestsList />
+                    </div>
 
+                    <div className={active === 2 ? styles.visible : styles.hidden}>
+                        <EventInvitesList onNmbInvites={setNmbInvites} />
+
+                    </div>
                 </div>
             </div>
 

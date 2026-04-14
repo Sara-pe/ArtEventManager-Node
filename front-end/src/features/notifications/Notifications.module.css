@@ -20,7 +20,6 @@
 }
 
 
-
 .header {
   display: flex;
   flex-direction: column;
@@ -88,4 +87,137 @@ background:black;
 
 color: black;
 }
+
+/* ---------- EventList ---------- */
+
+
+.listCards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ---------- Toggle ---------- */
+
+.visible {
+display: flex;
+flex-direction: column;
+}
+
+.hidden {
+display: none;
+}
+
+
+/* ---------- Card ---------- */
+
+
+.card {
+    display: flex;
+width: 100%;
+height: auto;
+padding: 16px;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+gap: 8px;
+border-radius: 32px;
+
+}
+
+.color0 {
+background: #FBE9CC;
+}
+
+.color1 {
+    background: #EAF1F3;
+}
+
+.color2 {
+    background: #ACC2FF;
+}
+
+.color3 {
+    background: #DCD5FB;
+}
+
+.color4 {
+    background: #C5E9FA;
+}
+
+
+.firstLine {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+}
+
+.firstLine div {
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+gap: 12px;
+}
+
+.thirdLine {
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+gap: 8px;
+align-items: center;
+width: 100%;
+}
+
+
+.initials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.initials p {
+ font-size: 16px;
+ font-weight: 600;
+ color: black;
+}
+
+.from {
+  font-weight: 600;
+ color: black;
+}
+
+.tag {
+    color: black;
+    border-radius: 200px;
+border: 1px solid #000;
+padding: 1px 8px;
+
+}
+
+.btns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.btns button {
+  width: 50%;
+}
+
+
+
+
+
 

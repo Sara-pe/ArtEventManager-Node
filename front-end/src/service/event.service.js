@@ -19,7 +19,25 @@ const eventService = {
                 Authorization: `Bearer ${token}`
             }
         })
-   console.log(response.data)
+        return response.data
+     
+    },
+
+
+
+     getInvites: async () => {
+
+
+        const token = getDefaultStore().get(saveAtom)
+
+        const payload = JSON.parse(atob(token.split('.')[1]))
+        const userId = payload.id
+
+        const response = await axios.get(`http://localhost:3000/api/events/user/${userId}/invitations`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         return response.data
      
     },
