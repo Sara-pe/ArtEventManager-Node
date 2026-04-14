@@ -12,7 +12,7 @@ export const AddEventForm = () => {
 
     const handleAddSubmit = async (formData) => {
         const data = Object.fromEntries(formData.entries());
-         await eventService.create(data);
+        await eventService.create(data);
         navigate('/');
     }
 
@@ -27,8 +27,18 @@ export const AddEventForm = () => {
                     </div>
                     <div className={styles.fieldGroup}>
                         <label htmlFor={id + 'type'}>Type</label>
-                        <input id={id + 'type'} type="text" name='type' className={styles.input} />
+
+                        <select id={id + 'type'} name="type" className={styles.select}>
+                            <option value="expo">Expo</option>
+                            <option value="concert">Concert</option>
+                            <option value="theatre">Theatre</option>
+                            <option value="dance">Dance</option>
+                            <option value="talk">Talk</option>
+                            <option value="workshop">Workshop</option>
+
+                        </select>
                     </div>
+
                     <div className={styles.fieldGroup}>
                         <label htmlFor={id + 'where'}>Where?</label>
                         <input id={id + 'where'} type="text" name='at' className={styles.input} />
