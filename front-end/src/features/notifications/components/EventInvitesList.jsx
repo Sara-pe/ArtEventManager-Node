@@ -17,7 +17,6 @@ export const EventInvitesList = ({ onNmbInvites }) => {
 
             try {
                 const invites = await eventService.getInvites()
-                console.log(invites);
                 setData(invites);
                 setLoading(false);
 
@@ -45,6 +44,7 @@ export const EventInvitesList = ({ onNmbInvites }) => {
     if (error) return (<p>somthing went wrong</p>)
     if (loading) return <p>Loading...</p>
 
+    console.log('Event invites:', data)
     const invitationsReceived = data?.invitationsReceived.filter((invitation) => (invitation.status === 'pending'))
 
 

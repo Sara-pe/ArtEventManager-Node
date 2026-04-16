@@ -2,7 +2,20 @@ import styles from '../Notifications.module.css'
 
 export const RequestCard = ({ index, request }) => {
 
-    const daysAgo = Math.floor((new Date() - new Date(request.createdAt)) / (1000 * 60 * 60 * 24))
+    const timeAgo = (date) => {
+        const diff = new Date() - new Date(date)
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+        const months = Math.floor(days / 30)
+        const years = Math.floor(days / 365)
+
+        if (days === 0) return 'Today'
+        if (days === 1) return 'Yesterday'
+        if (days < 30) return `${days} days ago`
+        if (months === 1) return '1 month ago'
+        if (months < 12) return `${months} months ago`
+        if (years === 1) return '1 year ago'
+        return `${years} years ago`
+    }
 
     return (
         <div className={`${styles.cardReq} ${index % 5 === 0 ? styles.color0 :
@@ -12,7 +25,7 @@ export const RequestCard = ({ index, request }) => {
                         styles.color4
             }`}>
 
-           <div className={styles.thirdLine}>
+            <div className={styles.thirdLine}>
                 <div className={styles.initials}>
                     <p>{request.from.name[0]}{request.from.lastname[0]}</p>
                 </div>
@@ -20,9 +33,9 @@ export const RequestCard = ({ index, request }) => {
                 <div>
                     <p className={styles.from}>{request.from.name} {request.from.lastname}</p>
 
-                    <p>{request.createdAt && (daysAgo === 0 ? 'Today' : daysAgo === 1 ? 'Yesterday' : `${daysAgo} days ago`)}</p>
+                    <p>{request.createdAt && timeAgo(request.createdAt)}</p>
                 </div>
-            
+
             </div>
             <div className={styles.btnsReq}>
                 <button className='btn-1'>Accept</button>

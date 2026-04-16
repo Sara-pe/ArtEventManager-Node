@@ -1,5 +1,4 @@
 
-
 /* ---------- Layout ---------- */
 .page {
   background-color: #ffffff;
@@ -233,6 +232,8 @@ gap: 8px;
 border-radius: 20px;
 
 }
+
+
 
 .btnsReq {
   display: flex;

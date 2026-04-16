@@ -1,0 +1,138 @@
+
+/*------------------- Friends ------------------------*/
+
+.page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+img {
+    height: 18px;
+    width: auto;
+}
+
+/* ---------- FriendList ---------- */
+
+
+.listCards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+/*------------------- FriendCard ------------------------*/
+
+.card {
+    display: flex;
+width: 100%;
+height: auto;
+padding: 16px;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+gap: 8px;
+border-radius: 20px;
+
+}
+
+
+
+.left {
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+gap: 8px;
+align-items: center;
+width: 100%;
+}
+
+.thirdLine div {
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+gap: 12px;
+}
+
+.initials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.initials p {
+ font-size: 16px;
+ font-weight: 600;
+ color: black;
+}
+
+.from {
+  font-weight: 600;
+ color: black;
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.color0 {
+background: #FBE9CC;
+}
+
+.color1 {
+    background: #EAF1F3;
+}
+
+.color2 {
+    background: #ACC2FF;
+}
+
+.color3 {
+    background: #DCD5FB;
+}
+
+.color4 {
+    background: #C5E9FA;
+}
