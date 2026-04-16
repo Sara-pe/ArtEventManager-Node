@@ -5,31 +5,35 @@ import { useNavigate } from 'react-router'
 
 import authService from '../../../service/auth.service'
 
-//JOTAI ATOM
+//JOTAI ATOMS
 import { useSetAtom } from 'jotai';
 import { saveAtom } from '../../../atoms/token.atom.js';
+import { NotificationAtom } from '../../../atoms/notifications.atom.js'
 
 
 export const LoginForm = () => {
 
     const id = useId();
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-const setToken = useSetAtom(saveAtom)
+    const setToken = useSetAtom(saveAtom)
+    const setNotifications = useSetAtom(NotificationAtom)
 
-const handleLoginSubmit = async (formData) => {
+    const handleLoginSubmit = async (formData) => {
 
         //Convert into an JS object
-        const data=Object.fromEntries(formData.entries());
+        const data = Object.fromEntries(formData.entries());
 
         //Receive a reply from the service 
         const reply = await authService.login(data);
 
         console.log(reply.token);
+        console.log(reply.nmbNotifications);
 
-        setToken (reply.token);
+        setToken(reply.token);
+        setNotifications(reply.nmbNotifications);
         navigate('/');
-}
+    }
 
     return (
         <form className={styles.form} action={handleLoginSubmit}>

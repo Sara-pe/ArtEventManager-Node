@@ -10,6 +10,8 @@ export const Notifications = () => {
     const [nmbInvites, setNmbInvites] = useState(null)
     const [nmbRequests, setNmbRequests] = useState(null)
 
+    const nmbNotifications = Math.floor((nmbRequests || 0) + (nmbInvites || 0) )
+
     return (
         <div>
 
@@ -19,7 +21,7 @@ export const Notifications = () => {
                     {/* Header */}
                     <div className={styles.header}>
                         <h1>Notifications</h1>
-                        <p className='subtitle'>You have X notifications</p>
+                        <p className='subtitle'>You have {nmbNotifications} notifications</p>
                     </div>
                     <div className={styles.buttons}>
 

@@ -1,5 +1,6 @@
 import styles from '../Notifications.module.css'
 import userService from '../../../service/user.service'
+import {RequestCard} from './RequestCard'
 import { useState, useEffect } from 'react'
 
 export const FriendRequestsList = ( { onNmbRequests }) => {
@@ -40,13 +41,12 @@ useEffect (() => {
 if (error) return <p>Something went wrong</p>
 
     const friendRequests = data.friendRequests.filter((request) => (request.status === 'pending'));
-
+console.log('friend requests:', friendRequests)
     return (
-        <div>
-      {friendRequests.map( (request) => (<div>
-            <p>{request.from.name} {request.from.lastname}</p>
-            <p>{request.status}</p>
-        </div> )) 
+      <div className={styles.listCards}>
+      {friendRequests.map( (request, index) => (
+        <RequestCard index={index} request={request}/>
+      )) 
         }</div>
     )
 }

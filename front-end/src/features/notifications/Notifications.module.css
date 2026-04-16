@@ -112,7 +112,7 @@ display: none;
 }
 
 
-/* ---------- Card ---------- */
+/* ---------- Card INVITES---------- */
 
 
 .card {
@@ -217,7 +217,30 @@ padding: 1px 8px;
 }
 
 
+/* ---------- Card REQUESTS---------- */
 
+
+
+.cardReq {
+    display: flex;
+width: 100%;
+height: auto;
+padding: 16px;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+gap: 8px;
+border-radius: 20px;
+
+}
+
+.btnsReq {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
 
 
 

@@ -61,8 +61,6 @@ export const EventList = ({ onNmbEvents }) => {
                 <EventCard key={event._id} event={event} index={index} />
             ))
             }
-
-
         </div>
     )
 }
