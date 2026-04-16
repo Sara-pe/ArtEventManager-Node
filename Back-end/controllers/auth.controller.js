@@ -1,4 +1,5 @@
 const authService = require("../services/mongo/auth.service");
+const eventService = require("../services/mongo/event.service");
 const jwtUtils = require('../utils/jwt.utils');
 
 //Jsonwebtoken: Library that generates a security token stored in local storage, so the user doesn't have to log in every minute
@@ -48,7 +49,8 @@ const authController = {
 
                 //Recuperate the number of notifications (friendRequests, eventInvites)
                 const pendingRequests = userFound.friendRequests.filter(r => r.status === 'pending').length
-                const pendingInvites = userFound.eventInvites?.filter(i => i.status === 'pending').length || 0
+                const invitationsTo = await eventService.findInvitationsTo(userFound._id)
+                const pendingInvites = invitationsTo.filter(inv => inv.status === 'pending').length
 
                 // We send the info + token
                 res.status(200).json({
