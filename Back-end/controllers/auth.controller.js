@@ -12,7 +12,7 @@ const authController = {
             const userToAdd = req.body;
             if (await authService.emailAlreadyExists(userToAdd.email)) {
 
-               return res.status(409).json({ statusCode: 409, message: 'This email already exists' });
+                return res.status(409).json({ statusCode: 409, message: 'This email already exists' });
 
             }
 
@@ -44,13 +44,18 @@ const authController = {
             }
             else {
                 //Create a token
-               const token = await jwtUtils.generate(userFound);
+                const token = await jwtUtils.generate(userFound);
+
+                //Recuperate the number of notifications (friendRequests, eventInvites)
+                const pendingRequests = userFound.friendRequests.filter(r => r.status === 'pending').length
+                const pendingInvites = userFound.eventInvites?.filter(i => i.status === 'pending').length || 0
 
                 // We send the info + token
                 res.status(200).json({
                     id: userFound._id,
                     name: userFound.name,
                     lastname: userFound.lastname,
+                    nmbNotifications: pendingRequests + pendingInvites,
                     token
                 });
             }
