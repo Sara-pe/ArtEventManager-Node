@@ -24,7 +24,7 @@ export const EventCard = ({ event, index }) => {
                         <p key={user._id}>{user.name} will go</p>
                     ))}
                 </div>
-                <button className="btn-2">Send Event</button>
+                <button className="btn-arrow"><img src="/icons/sendArrow2.png" alt="" /></button>
             </div>
 
         </div>

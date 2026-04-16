@@ -48,6 +48,7 @@ p {
 :root {
   --dark-gray: #808080;
   --light-gray: #F1F4F7;
+  --light-medium: #e0e3e5;
 }
 
 button {
@@ -74,7 +75,7 @@ a {
 .navBar {
     display: flex;
     width: calc(100% - 32px);
-    padding: 20px;
+    padding: 8px;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
@@ -84,6 +85,16 @@ a {
       bottom: 20px;       
     margin: 0 auto; 
       max-width: 400px;
+}
+
+.navBar a, .navBar button{
+width: 56px;
+height: 56px;
+}
+
+.navBar a:hover, .navBar button:hover {
+  border-radius: 100px;
+background: rgba(255, 255, 255, 0.20);
 }
 
 .navBar img { 
@@ -136,6 +147,10 @@ padding: 20px 0;
     position: relative;
 }
 
+.btn-icon:hover {
+    background: var(--light-medium);
+}
+
 .nmb-notifications {
 position: absolute;
 top: -4px;
@@ -171,6 +186,10 @@ color: white;
 }
 
 
+.btn-1:hover {
+background: #414052;
+}
+
 .btn-2 {
   display: flex;
 padding: 6px 20px;
@@ -183,7 +202,7 @@ border: 1px solid #000;
 }
 
 .btn-2:hover {
-/*! TO DO */
+background: rgba(65, 64, 82, 0.2);
 }
 
 .btn-3 {
@@ -201,6 +220,21 @@ width: 100%;
 
 .btn-3:hover {
 /*! TO DO */
+}
+
+.btn-arrow {
+  display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+border: 1px solid #000;
+height: 40px;
+width: 40px;
+}
+
+.btn-arrow img {
+height: 16px;
+width: auto;
 }
 
 
