@@ -40,6 +40,21 @@ img {
     width: auto;
 }
 
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
+gap: 8px;
+align-items: center;
+width: 100%;
+
+}
+
+.searchContainer img {
+height: 12px;
+width: auto;
+}
+
 /* ---------- FriendList ---------- */
 
 

@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom'
 export const Friends = () => {
 
     const [nmbFriends, setNmbFriends] = useState(0)
+    const [search, setSearch] = useState('')
+    const [showSearch, setShowSearch] = useState(false)
 
     return (
         <div className={styles.page}>
@@ -18,12 +20,20 @@ export const Friends = () => {
                     </div>
 
                     <div className={styles.buttons}>
-                        <button className="btn-icon"> <img src="/icons/search.png" alt="Search event" /> </button>
+                        <button className="btn-icon" onClick={()=>{setShowSearch(true)}}> <img src="/icons/search.png" alt="Search event" /> </button>
                         <NavLink to='/users' className="btn-icon"><img src="/icons/plus.png" alt="Add event" /></NavLink>
                     </div>
                 </div>
 
-                <FriendList onNmbFriends={setNmbFriends}/>
+   {showSearch && (<div className={styles.searchContainer}>
+                    <input type="text" value={search} placeholder="   Search friend"
+                        onChange={(e) => setSearch(e.target.value)} />
+
+                    <button onClick={() => setShowSearch(false)}>{/*<img src="/icons/close.svg" alt="Close search bar" /> */}<p className='black'>Cancel</p></button>
+                </div>
+                )}
+
+                <FriendList onNmbFriends={setNmbFriends} search={search}/>
             </div>
         </div>
    

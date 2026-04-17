@@ -19,7 +19,7 @@ const userService = {
             }
         })
         return response.data
-     
+
     },
 
     getAll: async () => {
@@ -34,9 +34,17 @@ const userService = {
         })
         return response.data
 
+    },
+
+    sendFriendRequest: async (targetUserId) => {
+        const token = getDefaultStore().get(saveAtom)
+        const response = await axios.post(`http://localhost:3000/api/users/${targetUserId}/friendRequests`, {}, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        return response.data
     }
 
 }
 
 
-    export default userService
+export default userService

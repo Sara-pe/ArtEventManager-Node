@@ -14,7 +14,7 @@ export const EventCard = ({ event, index }) => {
                     <p className={styles.tag}>{event.type}</p>
                     <p>{new Date(event.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</p>
                 </div>
-                <button ><img className={styles.iconXs} src="/icons/down.png" alt="Open" /></button>
+               {/* <button ><img className={styles.iconXs} src="/icons/down.png" alt="Open" /></button> */}
             </div>
             <h2>{event.name} @{event.at}</h2>
             <div className={styles.thirdLine}>

@@ -1,6 +1,7 @@
 import styles from './User.module.css'
 import {UsersList} from './components/UsersList'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export const Users = () => {
 
@@ -12,7 +13,7 @@ export const Users = () => {
                 <div className={styles.header}>
                     <div className={styles.title}>
                         <h1>Find friends</h1>
-                        <img className={styles.prevArrow} src="/icons/prev.png" alt="" />
+                       <NavLink to='/friends'> <img className={styles.prevArrow} src="/icons/prev.png" alt="" /></NavLink>
                     </div>
 
                     <div className={styles.searchContainer}>

@@ -4,13 +4,13 @@ import userService from '../../../service/user.service'
 import { UserCard } from './UserCard'
 
 
-export const UsersList = ( {search} ) => {
+export const UsersList = ({ search }) => {
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const [users, setUsers] = useState([])
     const [friends, setFriends] = useState([]);
-      const [myId, setMyId] = useState('');
+    const [myId, setMyId] = useState('');
 
 
     useEffect(() => {
@@ -37,11 +37,16 @@ export const UsersList = ( {search} ) => {
 
     }, [])
 
-    //(1)Array only with the ids of friends, (2)filter the users that don't have that id
-    const friendIds = new Set(friends.map(f => f._id))
-const nonFriends = users.filter(user => !friendIds.has(user._id) && user._id !== myId)
-//and the filter of the search input
-.filter(user => `${user.name} ${user.lastname}`.toLowerCase().includes(search.toLowerCase()))
+    //(1)Filter the users that don't have that id, (2) and the users that have a friendshipRequest pending from the user
+    const nonFriends = users
+    .filter(user => 
+        !friends.some(friend => friend._id === user._id) && 
+        user._id !== myId && 
+        !user.friendRequests.some(request => request.from._id === myId)
+    )
+
+        //(3) the filter of the search input
+        .filter(user => `${user.name} ${user.lastname}`.toLowerCase().includes(search.toLowerCase()))
 
 
     if (error) return (<p>somthing went wrong</p>)
