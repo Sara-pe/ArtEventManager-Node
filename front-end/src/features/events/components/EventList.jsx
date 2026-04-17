@@ -4,7 +4,7 @@ import { EventCard } from './EventCard'
 
 import styles from '../Home.module.css'
 
-export const EventList = ({ onNmbEvents }) => {
+export const EventList = ({ onNmbEvents, search }) => {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState(null)
@@ -51,6 +51,8 @@ export const EventList = ({ onNmbEvents }) => {
         if (!b.date) return -1
         return new Date(a.date) - new Date(b.date)
     })
+.filter(event => `${event.name} ${event.at} ${event.type}`.toLowerCase().includes(search.toLowerCase()))
+
 
     //a.date is a string  "2026-04-23T00:00:00.000Z" (deduction not possible) -> new Date(...) makes it a Date object ("2026-04-24")
 
