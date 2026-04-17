@@ -1,6 +1,11 @@
 import styles from '../Notifications.module.css'
+import userService from '../../../service/user.service'
+import { useState } from 'react'
 
 export const RequestCard = ({ index, request }) => {
+
+    const [accepted, setAccepted] = useState(false)
+    const [declined, setDeclined] = useState(false)
 
     const timeAgo = (date) => {
         const diff = new Date() - new Date(date)
@@ -15,6 +20,27 @@ export const RequestCard = ({ index, request }) => {
         if (months < 12) return `${months} months ago`
         if (years === 1) return '1 year ago'
         return `${years} years ago`
+    }
+
+    const onAcceptRequest = async (friendRequestId) => {
+
+        setAccepted(true)
+        try {
+            await userService.modifyFriendRequest(friendRequestId, 'accepted')
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const onDeclineRequest = async (friendRequestId) => {
+
+        setDeclined(true)
+
+        try {
+            await userService.modifyFriendRequest(friendRequestId, 'declined')
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -38,8 +64,21 @@ export const RequestCard = ({ index, request }) => {
 
             </div>
             <div className={styles.btnsReq}>
-                <button className='btn-1'>Accept</button>
-                <button className='btn-2'>Decline</button>
+                {!declined && (
+                    accepted ? (
+                        <p>Accepted</p>
+                    ) : (
+                        <button onClick={() => onAcceptRequest(request._id)} className='btn-1'>Accept</button>
+                    )
+                )}
+
+                {!accepted && (
+                    declined ? (
+                        <p>Declined</p>
+                    ) : (
+                        <button onClick={() => onDeclineRequest(request._id)} className='btn-2'>Decline</button>
+                    )
+                )}
             </div>
         </div>
     )

@@ -13,6 +13,8 @@ export const Users = () => {
                 <div className={styles.header}>
                     <div className={styles.title}>
                         <h1>Find friends</h1>
+
+                        
                        <NavLink to='/friends'> <img className={styles.prevArrow} src="/icons/prev.png" alt="" /></NavLink>
                     </div>
 

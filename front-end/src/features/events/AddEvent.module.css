@@ -21,26 +21,30 @@
 
 
 /* ---------- Header ---------- */
-.headerContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.headerContainer img {
- height: 12px;
- width: auto;
- padding-right: 12px;
-}
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 12px;
+justify-content: center;
+align-items: center;
+width: 100%;
 }
 
+.title {
+  display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+width: 100%;
+}
 
+.prevArrow {
+height: 14px;
+width: auto;
+position: absolute;
+left: 8px;
+}
 
 /* ---------- Form ---------- */
 .form {

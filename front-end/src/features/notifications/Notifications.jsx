@@ -3,6 +3,9 @@ import { FriendRequestsList } from './components/FriendRequestsList'
 import { EventInvitesList } from './components/EventInvitesList'
 import { useEffect, useState } from 'react'
 
+import { useSetAtom } from 'jotai'
+import { NotificationAtom } from '../../atoms/notifications.atom'
+
 export const Notifications = () => {
 
 
@@ -10,8 +13,16 @@ export const Notifications = () => {
     const [nmbInvites, setNmbInvites] = useState(null)
     const [nmbRequests, setNmbRequests] = useState(null)
 
+     const setNotifications = useSetAtom(NotificationAtom)
+
     const nmbNotifications = Math.floor((nmbRequests || 0) + (nmbInvites || 0) )
 
+    useEffect( ()=> {
+setNotifications(nmbNotifications)
+
+    }, [nmbNotifications]
+
+    )
     return (
         <div>
 
