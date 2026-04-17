@@ -23,4 +23,8 @@ userRouter.route('/:id/friends/:idFriend')
 userRouter.route('/:id/friendRequests/:idFriendRequest') 
     .patch(authenticationMiddleware(), userAuthorizationMiddleware(), userController.updateFriendRequest) 
 
+//Send friendRequest
+userRouter.route('/:id/friendRequests')
+    .post(authenticationMiddleware(), userController.sendFriendRequest)
+
 module.exports = userRouter;

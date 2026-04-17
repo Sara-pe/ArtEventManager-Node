@@ -103,7 +103,21 @@ const userService = {
             throw new Error(err);
         }
 
+    },
+
+    sendFriendRequest: async (idTarget, idFrom) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            idTarget,
+            { $push: { friendRequests: { from: idFrom, status: 'pending' } } },
+            { returnDocument: 'after' }
+        )
+        return updatedUser
+    } catch (err) {
+        console.log(err)
+        throw new Error(err)
     }
+}
 
 }
 

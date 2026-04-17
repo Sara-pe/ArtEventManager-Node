@@ -94,6 +94,17 @@ const userController = {
         }
     },
 
+    //Send friendRequest
+    sendFriendRequest: async (req, res) => {
+    try {
+        const result = await userService.sendFriendRequest(req.params.id, req.user.id)
+        if (!result) return res.status(404).json({ statusCode: 404, message: 'User not found' })
+        res.status(200).json(result)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ statusCode: 500, message: 'Error fetching Data from the DB' })
+    }
+}
 
 }
 
