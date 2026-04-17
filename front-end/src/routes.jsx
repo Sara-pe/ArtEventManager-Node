@@ -7,6 +7,7 @@ import { Home } from "./features/events/Home"
 import { AddEvent } from "./features/events/AddEvent"
 import { Notifications } from "./features/notifications/Notifications"
 import { Friends } from "./features/friends/Friends"
+import { Users } from "./features/users/Users"
 
 
 /**
@@ -42,6 +43,7 @@ export const routes = [
             { index: true, element: <ProtectedPage><Home /></ProtectedPage> },
             { path: 'add', element: <ProtectedPage><AddEvent /></ProtectedPage> },
             { path: 'friends', element: <ProtectedPage><Friends /></ProtectedPage> },
+                { path: 'users', element: <ProtectedPage><Users/></ProtectedPage> },
             { path: 'notifications', element: <ProtectedPage> <Notifications /> </ProtectedPage> },
             { path: 'agenda', element: <ProtectedPage>'Agenda'</ProtectedPage> },
             { path: 'settings', element: <ProtectedPage>'Settings'</ProtectedPage> }

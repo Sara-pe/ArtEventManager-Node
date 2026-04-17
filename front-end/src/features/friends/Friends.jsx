@@ -2,6 +2,7 @@
 import styles from './Friends.module.css'
 import { FriendList } from './components/FriendList'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export const Friends = () => {
 
@@ -18,7 +19,7 @@ export const Friends = () => {
 
                     <div className={styles.buttons}>
                         <button className="btn-icon"> <img src="/icons/search.png" alt="Search event" /> </button>
-                        <button className="btn-icon"><img src="/icons/plus.png" alt="Add event" /></button>
+                        <NavLink to='/users' className="btn-icon"><img src="/icons/plus.png" alt="Add event" /></NavLink>
                     </div>
                 </div>
 
