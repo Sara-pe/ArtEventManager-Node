@@ -18,10 +18,10 @@ export const InviteCard = ({ invite, index }) => {
 
 
             <h3>{invite.eventName} @{invite.eventAt}</h3>
-
+ 
             <div className={styles.thirdLine}>
                 <div className={styles.initials}>
-                    <p>{invite.from.name[0]}{invite.from.lastname[0]}</p>
+                  <p>{invite.from.name[0]}{invite.from.lastname[0]}</p> 
                 </div>
                 <p>Invited by <span className={styles.from}>{invite.from.name} {invite.from.lastname}</span></p>
 

@@ -203,6 +203,7 @@ height: 64px;
     display: flex;
 flex-direction: column;
 gap: 8px;
+margin-bottom: 32px;
 }
 
 .btnShare {
@@ -227,4 +228,107 @@ border-radius: 20px;
 background: white;
 color: black;
 font-size: 16px;
+}
+
+/* ---------- ModalShare ---------- */
+
+.modalContainer {
+      max-width: 400px;   
+     
+      width: 100%;
+      height: 100%;
+      position: fixed; 
+      top: 50%;
+    left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+ margin-bottom: 160px;
+    gap: 20px;
+    width: 96%;
+    padding: 20px;
+
+   border-radius: 32px;
+    background-color: rgb(255, 255, 255); 
+   max-height: 640px;  
+}
+
+.headerModal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+}
+
+.headerModal img{
+    height: 12px;
+    width: auto;
+}
+
+.headerText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.friendsList{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+        height: 100%; 
+    overflow-y: scroll;
+}
+
+
+/* ---------- Friend cards ---------- */
+
+
+.card {
+    display: flex;
+width: 100%;
+height: auto;
+padding: 16px;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+gap: 8px;
+border-radius: 20px;
+background-color: #EAF1F3;
+}
+
+
+.initials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.initials p {
+ font-size: 16px;
+ font-weight: 600;
+ color: black;
+}
+
+.to {
+  font-weight: 600;
+ color: black;
+}
+
+.selected {
+   background-color: #aed7e2;
 }

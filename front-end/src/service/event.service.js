@@ -57,7 +57,22 @@ const eventService = {
     })
         return response.data
 
-    }
+    },
+
+    sendInvitations: async (eventId, userIds) => {
+    const token = getDefaultStore().get(saveAtom)
+     const payload = JSON.parse(atob(token.split('.')[1]))
+        const myId = payload.id
+
+    const requests = userIds.map(userId => 
+        axios.post(
+            `http://localhost:3000/api/events/${eventId}/invitations`,
+             { to: userId, from: myId },
+            { headers: { Authorization: `Bearer ${token}` } }
+        )
+    )
+    return Promise.all(requests)
+}
 
 }
 

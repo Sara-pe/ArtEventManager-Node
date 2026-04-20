@@ -19,6 +19,7 @@ export const EventInvitesList = ({ onNmbInvites }) => {
                 const invites = await eventService.getInvites()
                 setData(invites);
                 setLoading(false);
+           
 
             } catch (err) {
                 setError(true)
@@ -46,7 +47,7 @@ export const EventInvitesList = ({ onNmbInvites }) => {
 
     console.log('Event invites:', data)
     const invitationsReceived = data?.invitationsReceived.filter((invitation) => (invitation.status === 'pending'))
-
+  console.log('invitations received:', invitationsReceived)
 
     return (
          <div className={styles.listCards}>

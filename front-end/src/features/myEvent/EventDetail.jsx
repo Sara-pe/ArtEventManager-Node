@@ -4,6 +4,8 @@ import styles from './Event.module.css'
 import { useParams } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 
+import {ModalShare} from './components/ModalShare'
+
 export const EventDetail = () => {
 
     const { id } = useParams();
@@ -11,6 +13,8 @@ export const EventDetail = () => {
     const [isLoading, setLoading] = useState(true);
     const [event, setEvent] = useState('')
     const [error, setError] = useState(false)
+
+       const [showModal, setShowModal] = useState(false)
 
 
     useEffect(() => {
@@ -35,15 +39,15 @@ export const EventDetail = () => {
 
     }, [])
 
-    const interested = event.interested ?? [];
-    const count = interested.length;
+
 
 
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>Something went wrong</p>
     if (!event) return null
 
-    // All events sorted from most recent
+    const interested = event.interested ?? [];
+    const count = interested.length;
 
 
     return (
@@ -148,14 +152,15 @@ export const EventDetail = () => {
                         />    
                        
                     </div>
+{showModal &&
+       <ModalShare key={event._id} event={event} onClose={() => setShowModal(false)}/>}
 
                     <div className={styles.btns}>
-                        <button className={styles.btnShare}>Share Event</button>
+                        <button className={styles.btnShare} onClick={()=>{setShowModal(true)}}>Share Event</button>
                         <button className={styles.btnDelete}>Delete</button>
                     </div>
 
                 </div>
-
 
             </div>
         </div>

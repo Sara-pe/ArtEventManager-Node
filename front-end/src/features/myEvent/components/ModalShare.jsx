@@ -1,0 +1,78 @@
+import styles from '../Event.module.css'
+import userService from '../../../service/user.service'
+import eventService from '../../../service/event.service'
+import { useState, useEffect } from 'react'
+
+export const ModalShare = ({ event, onClose }) => {
+
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+    const [friends, setFriends] = useState([]);
+
+
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                const user = await userService.getById()
+                setFriends(user.friends)
+
+            } catch (err) {
+
+                setError(true)
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+
+    }, [])
+
+    const [selected, setSelected] = useState([])
+
+    const onSelectFriend = (friendId) => {
+        if (selected.includes(friendId)) {
+            setSelected(selected.filter(id => id !== friendId))
+        } else {
+            setSelected([...selected, friendId])
+        }
+    }
+
+    const handleSend = async () => {
+        try {
+            await eventService.sendInvitations(event._id, selected)
+            onClose()
+        } catch (err) {
+            console.log('error sending invitations:', err)
+        }
+    }
+
+
+    return (
+         <div className={styles.modalContainer}>
+        <div className={styles.modal}>
+            <div className={styles.headerModal}>
+                <div className={styles.headerText}>
+                    <h1>Share event</h1>
+                    <p>{event.name} @{event.at}</p>
+                </div>
+               <button onClick={onClose}><img src="/icons/close.svg" alt="Close" /></button> 
+            </div>
+
+            <div className={styles.friendsList}>
+                {friends.map(friend => <div
+                    key={friend._id}
+                    className={`${styles.card} ${selected.includes(friend._id) ? styles.selected : ''}`}
+                    onClick={() => onSelectFriend(friend._id)}
+                >
+                    <div className={styles.initials}>
+                        <p>{friend.name[0]}{friend.lastname[0]}</p>
+                    </div>
+                    <p className={styles.to}>{friend.name} {friend.lastname} </p>
+                </div>)}
+            </div>
+            <button className={styles.btnShare} onClick={handleSend}>Share</button>
+        </div>  </div>
+    )
+}
