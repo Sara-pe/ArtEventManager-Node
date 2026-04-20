@@ -66,7 +66,7 @@ const eventSchema = new Schema(
                     type: Types.ObjectId,
                     ref: 'User'
                 },
-                status: { type: String, enum: ['pending', 'accepted', 'declined'] }
+                status: { type: String, enum: ['pending', 'accepted', 'declined'], default: 'pending' }
             }
         ]
     },
