@@ -78,6 +78,7 @@ const userController = {
 
             const modifyFriendRequest = await userService.updateFriendRequest(idUser, idFriendRequest, status)
 
+
             if (!modifyFriendRequest) {
                return res.status(404).json({
                     statusCode: 404,

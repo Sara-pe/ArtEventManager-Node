@@ -85,6 +85,8 @@ const userService = {
                 { $set: { "friendRequests.$.status": status } },
                 { returnDocument: 'after' }
 
+                
+
             );
 
             // If accepted, add as friend
