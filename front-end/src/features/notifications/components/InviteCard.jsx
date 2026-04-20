@@ -17,7 +17,7 @@ export const InviteCard = ({ invite, index }) => {
             </div>
 
 
-            <h2>{invite.eventName} @{invite.eventAt}</h2>
+            <h3>{invite.eventName} @{invite.eventAt}</h3>
 
             <div className={styles.thirdLine}>
                 <div className={styles.initials}>

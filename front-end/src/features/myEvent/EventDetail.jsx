@@ -1,0 +1,166 @@
+import eventService from '../../service/event.service'
+import { useState, useEffect } from 'react'
+import styles from './Event.module.css'
+import { useParams } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
+
+export const EventDetail = () => {
+
+    const { id } = useParams();
+
+    const [isLoading, setLoading] = useState(true);
+    const [event, setEvent] = useState('')
+    const [error, setError] = useState(false)
+
+
+    useEffect(() => {
+
+        const fetchEvent = async () => {
+
+            try {
+                const eventInfo = await eventService.getById(id)
+                setEvent(eventInfo);
+                setLoading(false)
+                setError(false)
+
+            } catch (err) {
+                console.log('error:', err)
+                setEvent(null)
+                setLoading(false)
+                setError(true)
+            }
+        }
+
+        fetchEvent()
+
+    }, [])
+
+    const interested = event.interested ?? [];
+    const count = interested.length;
+
+
+    if (isLoading) return <p>Loading...</p>
+    if (error) return <p>Something went wrong</p>
+    if (!event) return null
+
+    // All events sorted from most recent
+
+
+    return (
+        <div className={styles.page}>
+            <div className={styles.container}>
+
+                {/* Header */}
+                <div className={styles.header}>
+                    <div className={styles.title}>
+                        <h1>Your event!</h1>
+
+
+                        <NavLink to='/'> <img className={styles.prevArrow} src="/icons/prev.png" alt="" /></NavLink>
+                    </div>
+                </div>
+
+                {/* Event Info */}
+                <div className={styles.eventDetails}>
+
+
+
+                    {/* SVG CardIntro */}
+                    <div className={styles.containerCardIntro}>
+                        <svg width="100%" height="216" viewBox="0 0 360 216" preserveAspectRatio="none">
+                            <path
+                                d="M32,0 Q0,0 0,32 L0,120 Q0,152 32,152 L112,152 Q144,152 144,184 Q144,216 176,216 L328,216 Q360,216 360,184 L360,32 Q360,0 328,0 Z"
+                                fill="#EAF1F3"
+                            />
+                            <foreignObject x="0" y="0" width="360" height="240">
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+
+
+                                    {/* CardIntro */}
+                                    <div className={styles.cardIntro}>
+                                        <div className={styles.intro}>
+                                            <div>
+                                                <p className={styles.tag}>{event.type}</p>
+                                                <h2>{event.name}</h2>
+                                            </div>
+                                            <p>{new Date(event.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</p>
+                                        </div>
+                                        <div className={styles.contImg}>
+                                            <img src="/imgs/micro.png" alt="Microphone" />
+                                        </div>
+                                    </div>
+
+                                    {/* ---- */}
+
+                                </div>
+                            </foreignObject>
+                        </svg>
+
+                        {/* ---- */}
+
+                        <div className={styles.interested}>
+                            <p className={styles.nmbInterested}>+{event.interested.length}</p>
+
+
+                            {count === 0 && (
+                                <p>No one yet</p>
+                            )}
+
+                            {count > 0 && count <= 2 && (
+                                <div>
+                                    <p>
+                                        {interested.map(user => user.name).join(', ')} will go</p>
+                                </div>
+                            )}
+
+                            {count > 2 && (
+                                <div>
+                                    <p>
+                                        {interested.slice(0, 2).map(user => user.name).join(', ')} and {count - 2} more will go
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+
+                    </div>
+
+                    <div className={styles.infoContainer}>
+                        <div className={styles.locationContainer}>
+                            <img src="/icons/building.png" alt="" />
+                            <div>
+                                <p className={styles.at}>{event.at}</p>
+                                <p>{event.city}</p>
+                            </div>
+                        </div>
+                        <p className={styles.hour}>{event.hour}hrs</p>
+                    </div>
+
+                    <div className={styles.location}>
+                     <div className={styles.contAddress}>
+                        <p>📍 {event.address}</p>
+                        </div>
+
+                        <iframe
+                            width="100%"
+                            height="216"
+                            className={styles.maps}
+                            src={`https://www.google.com/maps?q=${encodeURIComponent(event.address)}&output=embed`}
+                        />    
+                       
+                    </div>
+
+                    <div className={styles.btns}>
+                        <button className={styles.btnShare}>Share Event</button>
+                        <button className={styles.btnDelete}>Delete</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    )
+}
+
+
+

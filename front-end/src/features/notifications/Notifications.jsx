@@ -12,13 +12,12 @@ export const Notifications = () => {
     const [active, setActive] = useState(1)
     const [nmbInvites, setNmbInvites] = useState(null)
     const [nmbRequests, setNmbRequests] = useState(null)
+    const setNotifications = useSetAtom(NotificationAtom)
 
-     const setNotifications = useSetAtom(NotificationAtom)
+    const nmbNotifications = Math.floor((nmbRequests || 0) + (nmbInvites || 0))
 
-    const nmbNotifications = Math.floor((nmbRequests || 0) + (nmbInvites || 0) )
-
-    useEffect( ()=> {
-setNotifications(nmbNotifications)
+    useEffect(() => {
+        setNotifications(nmbNotifications)
 
     }, [nmbNotifications]
 

@@ -1,6 +1,10 @@
 import styles from '../Home.module.css'
+import { useNavigate } from 'react-router-dom';
 
 export const EventCard = ({ event, index }) => {
+
+      const navigate = useNavigate();
+
     return (
         <div className={`${styles.card} ${index % 5 === 0 ? styles.color0 :
                 index % 5 === 1 ? styles.color1 :
@@ -16,7 +20,7 @@ export const EventCard = ({ event, index }) => {
                 </div>
                {/* <button ><img className={styles.iconXs} src="/icons/down.png" alt="Open" /></button> */}
             </div>
-            <h2>{event.name} @{event.at}</h2>
+            <h3>{event.name} @{event.at}</h3>
             <div className={styles.thirdLine}>
                 <div className={styles.interested}>
                     <p className={styles.nmbInterested}>+{event.interested.length}</p>
@@ -24,7 +28,7 @@ export const EventCard = ({ event, index }) => {
                         <p key={user._id}>{user.name} will go</p>
                     ))}
                 </div>
-                <button className="btn-arrow"><img src="/icons/sendArrow2.png" alt="" /></button>
+                <button className="btn-arrow" onClick={() => navigate(`/events/${event._id}`)} ><img src="/icons/sendArrow2.png" alt="" /></button>
             </div>
 
         </div>

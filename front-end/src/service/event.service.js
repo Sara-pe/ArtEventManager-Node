@@ -6,8 +6,6 @@ import { saveAtom } from '../atoms/token.atom'
 const eventService = {
 
     getAll: async () => {
-
-
         const token = getDefaultStore().get(saveAtom)
 
         //Extract the id from the token
@@ -20,13 +18,23 @@ const eventService = {
             }
         })
         return response.data
-     
+    },
+
+    getById: async (eventId) => {
+        const token = getDefaultStore().get(saveAtom)
+
+          const response = await axios.get(`http://localhost:3000/api/events/${eventId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response.data
+
     },
 
 
      getInvites: async () => {
         const token = getDefaultStore().get(saveAtom)
-
         const payload = JSON.parse(atob(token.split('.')[1]))
         const userId = payload.id
 
@@ -35,8 +43,7 @@ const eventService = {
                 Authorization: `Bearer ${token}`
             }
         })
-        return response.data
-     
+        return response.data  
     },
 
     create: async (eventData) => {

@@ -51,6 +51,11 @@ export const AddEventForm = () => {
                         <label htmlFor={id + 'time'}>What time?</label>
                         <input id={id + 'time'} type="text" name='hour' className={styles.input} />
                     </div>
+                     <div className={styles.fieldGroup}>
+                        <label htmlFor={id + 'city'}>City</label>
+                        <input id={id + 'city'} type="text" name='city' className={styles.input} />
+                    </div>
+
                     <div className={styles.fieldGroup}>
                         <label htmlFor={id + 'address'}>Address</label>
                         <input id={id + 'address'} type="text" name='address' className={styles.input} />
