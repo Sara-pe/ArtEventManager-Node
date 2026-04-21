@@ -277,6 +277,17 @@ updateInvitation: async (eventId, invitationId, status) => {
             { $set: { "invitations.$.status": status } },
             { returnDocument: 'after' }
         );
+
+          // If accepted, add event to user's interested list
+        if (status === 'accepted' && updatedEvent) {
+            const acceptedInvitation = updatedEvent.invitations.id(invitationId);
+            await User.findByIdAndUpdate(
+                acceptedInvitation.to,   // ← from your invitation subdocument
+                { $push: { interested: eventId } }  // ← check your User schema field name
+            );
+        }
+
+        
         return updatedEvent;
 
     } catch (err) {
