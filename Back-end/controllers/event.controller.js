@@ -44,36 +44,24 @@ const eventController = {
         }
     },
 
-    getByUser: async (req, res) => {
+getByUser: async (req, res) => {
+    try {
+        const userId = req.params.idUser;
 
-        try {
+        const createdByMe = await eventService.findCreatedBy(userId);
+        const interestedIn = await eventService.findInterested(userId);
 
-            const userId = req.params.idUser;
+        res.status(200).json({
+            userId,
+            created: createdByMe,
+            interested: interestedIn
+        });
 
-            const createdByMe = await eventService.findCreatedBy(userId);
-            const interestedIn = await eventService.findInterested(userId);
-
-
-            if (createdByMe.length === 0
-                && interestedIn.length === 0
-            ) {
-                return res.status(404).json({
-                    statusCode: 404,
-                    message: 'No events found for this user'
-                });
-            }
-
-            res.status(200).json({
-                userId,
-                created: createdByMe,
-                interested: interestedIn
-            });
-
-        } catch (err) {
-            console.log(err);
-            res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
-        }
-    },
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
+    }
+},
 
 
     insert: async (req, res) => {

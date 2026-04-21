@@ -281,7 +281,7 @@ const eventService = {
             const eventUpdate = await Event.findByIdAndUpdate(
                 eventId,
                 { $push: { interested: acceptedInvitation.to } },
-                { new: true }  // ← añadido
+                { new: true }  
             );
             console.log("eventUpdate interested:", eventUpdate?.interested);  // ← añadido
         }
