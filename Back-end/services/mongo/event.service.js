@@ -195,6 +195,7 @@ const eventService = {
                     })
                     .map(inv => ({
                         ...inv.toObject(),
+                        eventId: event._id,
                         eventName: event.name
                     }));
             });
@@ -236,6 +237,7 @@ const eventService = {
                 .filter(inv => inv.to._id.toString() === userId.toString())
                 .map(inv => ({
                     ...inv.toObject(),
+                    eventId: event._id,
                     eventName: event.name,
                     eventAt: event.at,
                     eventDate: event.date,
