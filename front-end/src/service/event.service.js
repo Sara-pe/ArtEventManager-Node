@@ -23,7 +23,7 @@ const eventService = {
     getById: async (eventId) => {
         const token = getDefaultStore().get(saveAtom)
 
-          const response = await axios.get(`http://localhost:3000/api/events/${eventId}`, {
+        const response = await axios.get(`http://localhost:3000/api/events/${eventId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -33,7 +33,7 @@ const eventService = {
     },
 
 
-     getInvites: async () => {
+    getInvites: async () => {
         const token = getDefaultStore().get(saveAtom)
         const payload = JSON.parse(atob(token.split('.')[1]))
         const userId = payload.id
@@ -43,7 +43,7 @@ const eventService = {
                 Authorization: `Bearer ${token}`
             }
         })
-        return response.data  
+        return response.data
     },
 
     create: async (eventData) => {
@@ -51,28 +51,39 @@ const eventService = {
         const token = getDefaultStore().get(saveAtom)
 
         const response = await axios.post('http://localhost:3000/api/events', eventData, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         return response.data
 
     },
 
     sendInvitations: async (eventId, userIds) => {
-    const token = getDefaultStore().get(saveAtom)
-     const payload = JSON.parse(atob(token.split('.')[1]))
+        const token = getDefaultStore().get(saveAtom)
+        const payload = JSON.parse(atob(token.split('.')[1]))
         const myId = payload.id
 
-    const requests = userIds.map(userId => 
-        axios.post(
-            `http://localhost:3000/api/events/${eventId}/invitations`,
-             { to: userId, from: myId },
-            { headers: { Authorization: `Bearer ${token}` } }
+        const responses = userIds.map(userId =>
+            axios.post(
+                `http://localhost:3000/api/events/${eventId}/invitations`,
+                { to: userId, from: myId },
+                { headers: { Authorization: `Bearer ${token}` } }
+            )
         )
-    )
-    return Promise.all(requests)
-}
+        return Promise.all(responses)
+    },
+
+    updateInvitation: async (inviteId, eventId, status) => {
+        const token = getDefaultStore().get(saveAtom)
+
+        const response = axios.patch(`http://localhost:3000/api/events/${eventId}/invitations/${inviteId}`,
+            { status },  // same as { status: status }
+            { headers: { Authorization: `Bearer ${token}` } }
+
+        )
+
+    }
 
 }
 
