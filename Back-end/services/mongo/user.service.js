@@ -74,38 +74,42 @@ const userService = {
         }
     },
 
-    updateFriendRequest: async (idUser, idFriendRequest, status) => {
+updateFriendRequest: async (idUser, idFriendRequest, status) => {
+    try {
+        const updatedFriendRequest = await User.findOneAndUpdate(  
+            { _id: idUser, "friendRequests._id": idFriendRequest },
+            { $set: { "friendRequests.$.status": status } },
+            { returnDocument: 'after' }
+        );
 
-        try {
+        console.log("updatedFriendRequest:", JSON.stringify(updatedFriendRequest, null, 2));
 
-            const updatedFriendRequest = await User.findOneAndUpdate(  
-                // updatedFriendRequest is the full user
-                
-                { _id: idUser, "friendRequests._id": idFriendRequest },
-                { $set: { "friendRequests.$.status": status } },
-                { returnDocument: 'after' }
+        // If accepted, add as friend
+      if (status === 'accepted' && updatedFriendRequest) {
+    const acceptedFriendReq = updatedFriendRequest.friendRequests.id(idFriendRequest);
 
-                
+    // Add sender to Ingeborg's friends
+    await User.findByIdAndUpdate(
+        idUser,
+        { $push: { friends: acceptedFriendReq.from } },
+        { returnDocument: 'after' }  
+    );
 
-            );
+    // Add Ingeborg to the sender's friends 
+    await User.findByIdAndUpdate(
+        acceptedFriendReq.from,
+        { $push: { friends: idUser } },
+        { returnDocument: 'after' }
+    );
+}
 
-            // If accepted, add as friend
-            if (status === 'accepted' && updatedFriendRequest) {
-                const acceptedFriendReq = updatedFriendRequest.friendRequests.id(idFriendRequest);
-                await User.findByIdAndUpdate(
-                    idUser,
-                    { $push: { friends: acceptedFriendReq.from } }
-                );
-            }
+        return updatedFriendRequest;
 
-            return updatedFriendRequest;
-
-        } catch (err) {
-            console.log(err);
-            throw new Error(err);
-        }
-
-    },
+    } catch (err) {
+        console.log(err);
+        throw new Error(err);
+    }
+},
 
     sendFriendRequest: async (idTarget, idFrom) => {
     try {
