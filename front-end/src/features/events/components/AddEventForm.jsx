@@ -29,12 +29,13 @@ export const AddEventForm = () => {
                         <label htmlFor={id + 'type'}>Type</label>
 
                         <select id={id + 'type'} name="type" className={styles.select}>
-                            <option value="expo">Expo</option>
-                            <option value="concert">Concert</option>
-                            <option value="theatre">Theatre</option>
-                            <option value="dance">Dance</option>
-                            <option value="talk">Talk</option>
-                            <option value="workshop">Workshop</option>
+                            <option value="Expo">Expo</option>
+                            <option value="Concert">Concert</option>
+                            <option value="Theatre">Theatre</option>
+                            <option value="Dance">Dance</option>
+                            <option value="Talk">Talk</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Cinema">Cinema</option>
 
                         </select>
                     </div>

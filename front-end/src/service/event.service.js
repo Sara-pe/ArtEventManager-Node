@@ -83,6 +83,17 @@ const eventService = {
 
         )
 
+    },
+
+    
+    deleteEvent: async (eventId) => {
+        const token = getDefaultStore().get(saveAtom)
+
+        const response = axios.delete(`http://localhost:3000/api/events/${eventId}`,
+            { headers: { Authorization: `Bearer ${token}` } }
+
+        )
+
     }
 
 }

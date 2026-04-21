@@ -73,20 +73,55 @@ flex-direction: column;
 align-items: center;
 justify-content: flex-end;
 height: 100%;
-width: 100px;
+padding: 0px 20px 0px 0px ;
 }
 
-.cardIntro img {
 
-  height: 168px;
-  width: auto
+.imgCinema {
+   
+  height: auto;
+  width: 80px; 
+  margin-bottom: 40px;
 }
+
+.imgMicro {
+   
+    height: auto;
+    width: 70px; 
+    margin-right: 16px;
+    transform: scaleX(-1);
+  }
+
+  .imgDance {
+    height: auto;
+    width: 100px; 
+    margin-bottom: 32px;
+ 
+  }
+  .imgWorkshop {
+    height: auto;
+    width: 60px; 
+ 
+  }
+
+  .imgExpo {
+    height: auto;
+    width: 120px; 
+    margin-right: 16px;
+    transform: scaleX(-1);
+  }
+
+  .imgTheatre {
+    height: auto;
+    width: 92px; 
+    margin-bottom: 40px;
+  }
 
 .intro {
     display: flex;
     flex-direction: column;
     height: 155px;
-    padding: 20px;
+    padding: 20px 0px 20px 20px ;
     justify-content: space-between;
     align-items: flex-start;
 

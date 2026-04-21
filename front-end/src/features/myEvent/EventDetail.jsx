@@ -4,7 +4,8 @@ import styles from './Event.module.css'
 import { useParams } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 
-import {ModalShare} from './components/ModalShare'
+import { ModalShare } from './components/ModalShare'
+import {useNavigate } from 'react-router-dom';
 
 export const EventDetail = () => {
 
@@ -14,8 +15,9 @@ export const EventDetail = () => {
     const [event, setEvent] = useState('')
     const [error, setError] = useState(false)
 
-       const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -40,6 +42,16 @@ export const EventDetail = () => {
     }, [])
 
 
+    const handleDelete = async (eventId) => {
+
+        try {
+            await eventService.deleteEvent(eventId)
+            navigate('/')
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
 
     if (isLoading) return <p>Loading...</p>
@@ -48,7 +60,7 @@ export const EventDetail = () => {
 
     const interested = event.interested ?? [];
     const count = interested.length;
-
+    console.log('event.type:', event.type)
 
     return (
         <div className={styles.page}>
@@ -90,7 +102,16 @@ export const EventDetail = () => {
                                             <p>{new Date(event.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</p>
                                         </div>
                                         <div className={styles.contImg}>
-                                            <img src="/imgs/micro.png" alt="Microphone" />
+
+
+
+                                            {(event.type === "Cinema") && <img className={styles.imgCinema} src="/imgs/cinema.png" alt="Cinema" />}
+                                            {(event.type === "Concert") && <img className={styles.imgMicro} src="/imgs/micro1.png" alt="Microphone" />}
+                                            {(event.type === "Talk") && <img className={styles.imgMicro} src="/imgs/micro1.png" alt="Microphone" />}
+                                            {(event.type === "Dance") && <img className={styles.imgDance} src="/imgs/ballet.png" alt="Dance" />}
+                                            {(event.type === "Workshop") && <img className={styles.imgWorkshop} src="/imgs/workshop.png" alt="Workshop" />}
+                                            {(event.type === "Expo") && <img className={styles.imgExpo} src="/imgs/expo.png" alt="Expo" />}
+                                            {(event.type === "Theatre") && <img className={styles.imgTheatre} src="/imgs/theatre.png" alt="Theatre" />}
                                         </div>
                                     </div>
 
@@ -140,8 +161,8 @@ export const EventDetail = () => {
                     </div>
 
                     <div className={styles.location}>
-                     <div className={styles.contAddress}>
-                        <p>📍 {event.address}</p>
+                        <div className={styles.contAddress}>
+                            <p>📍 {event.address}</p>
                         </div>
 
                         <iframe
@@ -149,15 +170,15 @@ export const EventDetail = () => {
                             height="216"
                             className={styles.maps}
                             src={`https://www.google.com/maps?q=${encodeURIComponent(event.address)}&output=embed`}
-                        />    
-                       
+                        />
+
                     </div>
-{showModal &&
-       <ModalShare key={event._id} event={event} onClose={() => setShowModal(false)}/>}
+                    {showModal &&
+                        <ModalShare key={event._id} event={event} onClose={() => setShowModal(false)} />}
 
                     <div className={styles.btns}>
-                        <button className={styles.btnShare} onClick={()=>{setShowModal(true)}}>Share Event</button>
-                        <button className={styles.btnDelete}>Delete</button>
+                        <button className={styles.btnShare} onClick={() => { setShowModal(true) }}>Share Event</button>
+                        <button className={styles.btnDelete} onClick={() => handleDelete(event._id)}>Delete</button>
                     </div>
 
                 </div>
