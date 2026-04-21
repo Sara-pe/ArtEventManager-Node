@@ -77,17 +77,17 @@ const eventController = {
 
 
     insert: async (req, res) => {
-       try {
-       
-        const eventToAdd = req.body;
-        eventToAdd.createdBy = req.user.id;
+        try {
 
-        const addedEvent = await eventService.create(eventToAdd);
+            const eventToAdd = req.body;
+            eventToAdd.createdBy = req.user.id;
 
-        res.location(`/api/events/${addedEvent.id}`);
-        res.status(201).json(addedEvent);
+            const addedEvent = await eventService.create(eventToAdd);
 
-          } catch (err) {
+            res.location(`/api/events/${addedEvent.id}`);
+            res.status(201).json(addedEvent);
+
+        } catch (err) {
             console.log(err);
             res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
         }
@@ -95,21 +95,21 @@ const eventController = {
 
     update: async (req, res) => {
 
-         try {
-        const id = req.params.id;
-        const newEventInfos = req.body;
+        try {
+            const id = req.params.id;
+            const newEventInfos = req.body;
 
-        //Verify if the event already exists
-        const event = await eventService.findById(id);
-        if (!event) {
-            res.status(404).json({ statusCode: 404, message: 'The event you are trying to modify does not exist' });
-        }
+            //Verify if the event already exists
+            const event = await eventService.findById(id);
+            if (!event) {
+                res.status(404).json({ statusCode: 404, message: 'The event you are trying to modify does not exist' });
+            }
 
-        //If the event exists
-        const updatedEvent = await eventService.update(id, newEventInfos);
-        res.status(200).json(updatedEvent);
+            //If the event exists
+            const updatedEvent = await eventService.update(id, newEventInfos);
+            res.status(200).json(updatedEvent);
 
-         } catch (err) {
+        } catch (err) {
             console.log(err);
             res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
         }
@@ -118,21 +118,21 @@ const eventController = {
 
 
     delete: async (req, res) => {
-       
-       try {
-        const id = req.params.id;
 
-        const deletedEvent = await eventService.delete(id);
+        try {
+            const id = req.params.id;
 
-        if (deletedEvent) {
-            res.sendStatus(204);
-        }
+            const deletedEvent = await eventService.delete(id);
 
-        else {
-            res.status(404).json({ statusCode: 404, message: 'Impossible supression, the event does not exist' })
-        }
+            if (deletedEvent) {
+                res.sendStatus(204);
+            }
 
-             } catch (err) {
+            else {
+                res.status(404).json({ statusCode: 404, message: 'Impossible supression, the event does not exist' })
+            }
+
+        } catch (err) {
             console.log(err);
             res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
         }
@@ -143,26 +143,26 @@ const eventController = {
     getInvitations: async (req, res) => {
 
         try {
-        const userId = req.params.id;
+            const userId = req.params.id;
 
-        const invitationsSent = await eventService.findInvitationsFrom(userId);
-        const invitationsReceived = await eventService.findInvitationsTo(userId);
+            const invitationsSent = await eventService.findInvitationsFrom(userId);
+            const invitationsReceived = await eventService.findInvitationsTo(userId);
 
 
-        if (invitationsSent.length === 0 && invitationsReceived.length === 0) {
-            return res.status(404).json({
-                statusCode: 404,
-                message: 'No invitations found for this user'
+            if (invitationsSent.length === 0 && invitationsReceived.length === 0) {
+                return res.status(404).json({
+                    statusCode: 404,
+                    message: 'No invitations found for this user'
+                });
+            }
+
+            res.status(200).json({
+                userId,
+                invitationsSent: invitationsSent,
+                invitationsReceived: invitationsReceived
             });
-        }
 
-        res.status(200).json({
-            userId,
-            invitationsSent: invitationsSent,
-            invitationsReceived: invitationsReceived
-        });
-
-            } catch (err) {
+        } catch (err) {
             console.log(err);
             res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
         }
@@ -172,15 +172,15 @@ const eventController = {
     insertInvitation: async (req, res) => {
 
         try {
-       
-        const eventId = req.params.id;
-        const invitationData = req.body;
-        const addedInvitation = await eventService.createInvitation(eventId, invitationData);
 
-        res.location(`/api/events/${eventId}/invitations/${addedInvitation.id}`);
-        res.status(201).json(addedInvitation);
+            const eventId = req.params.id;
+            const invitationData = req.body;
+            const addedInvitation = await eventService.createInvitation(eventId, invitationData);
 
-             } catch (err) {
+            res.location(`/api/events/${eventId}/invitations/${addedInvitation.id}`);
+            res.status(201).json(addedInvitation);
+
+        } catch (err) {
             console.log(err);
             res.status(500).json({ statusCode: 500, message: 'Error fetching data from the DB' });
         }
@@ -188,20 +188,24 @@ const eventController = {
 
     updateInvitation: async (req, res) => {
 
-        const eventId = req.params.eventId;
-        const invitationId = req.params.invitationId;
-        const status = req.body.status;
-        const modifyInvitation = await eventService.updateInvitation(eventId, invitationId, status);
+        try {
+            const eventId = req.params.eventId;
+            const invitationId = req.params.invitationId;
+            const status = req.body.status;
+            const modifyInvitation = await eventService.updateInvitation(eventId, invitationId, status);
 
-        if (!modifyInvitation) {
-            res.status(404).json({
-                statusCode: 404,
-                message: 'Invitation or event not found'
-            })
-        }
+            if (!modifyInvitation) {
+                return res.status(404).json({
+                    statusCode: 404,
+                    message: 'Invitation or event not found'
+                });
+            }
 
-        res.status(200).json(modifyInvitation);
-    },
-}
+            res.status(200).json(modifyInvitation);
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ statusCode: 500, message: 'Error updating invitation' });
+        }}
+    }
 
 module.exports = eventController;

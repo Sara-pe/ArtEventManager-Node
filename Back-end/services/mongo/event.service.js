@@ -183,22 +183,18 @@ const eventService = {
                     ]
                 });
 
-            // Option1: return eventsInvitationFrom
-
-            //Option 2: return only the invitation with the name of the event
-
             return eventsInvitationFrom
-            .flatMap(event => {
-                return event.invitations
-                    .filter(inv => {
-                        return inv.from && inv.from._id.toString() === userId.toString();
-                    })
-                    .map(inv => ({
-                        ...inv.toObject(),
-                        eventId: event._id,
-                        eventName: event.name
-                    }));
-            });
+                .flatMap(event => {
+                    return event.invitations
+                        .filter(inv => {
+                            return inv.from && inv.from._id.toString() === userId.toString();
+                        })
+                        .map(inv => ({
+                            ...inv.toObject(),
+                            eventId: event._id,
+                            eventName: event.name
+                        }));
+                });
             // flatMap does the map and then flattens one level.
             // 1. invitationFrom is an array of events, flatMap iterates over each event
             //    and flattens the final result into a single array
@@ -213,7 +209,7 @@ const eventService = {
         }
     },
 
-   findInvitationsTo: async (userId) => {
+    findInvitationsTo: async (userId) => {
         try {
             const eventsInvitationTo = await Event.find({ "invitations.to": userId })
                 .populate({
@@ -233,18 +229,18 @@ const eventService = {
                 });
 
             return eventsInvitationTo
-              .flatMap(event => event.invitations
-                .filter(inv => inv.to._id.toString() === userId.toString())
-                .map(inv => ({
-                    ...inv.toObject(),
-                    eventId: event._id,
-                    eventName: event.name,
-                    eventAt: event.at,
-                    eventDate: event.date,
-                    eventTime: event.hour,
-                    eventType: event.type,
-                }))
-            );
+                .flatMap(event => event.invitations
+                    .filter(inv => inv.to._id.toString() === userId.toString())
+                    .map(inv => ({
+                        ...inv.toObject(),
+                        eventId: event._id,
+                        eventName: event.name,
+                        eventAt: event.at,
+                        eventDate: event.date,
+                        eventTime: event.hour,
+                        eventType: event.type,
+                    }))
+                );
 
 
         } catch (err) {
@@ -254,51 +250,48 @@ const eventService = {
     },
 
 
-  createInvitation: async (eventId, invitationData) => {
+    createInvitation: async (eventId, invitationData) => {
+        try {
+            const updatedEvent = await Event.findByIdAndUpdate(
+                eventId,
+                { $push: { invitations: invitationData } },
+                { new: true }
+            );
+            return updatedEvent;
+
+        } catch (err) {
+            console.log(err);
+            throw new Error(err);
+        }
+    },
+
+   updateInvitation: async (eventId, invitationId, status) => {
     try {
-        const updatedEvent = await Event.findByIdAndUpdate(
-            eventId,
-            { $push: { invitations: invitationData } },
-            { new: true }
+        const updatedEvent = await Event.findOneAndUpdate(
+            { _id: eventId, "invitations._id": invitationId },
+            { $set: { "invitations.$.status": status } },
+            { returnDocument: 'after' }
         );
+
+        console.log("updatedEvent:", updatedEvent);
+
+        if (status === 'accepted' && updatedEvent) {
+            const acceptedInvitation = updatedEvent.invitations.id(invitationId);
+
+            const eventUpdate = await Event.findByIdAndUpdate(
+                eventId,
+                { $push: { interested: acceptedInvitation.to } },
+                { new: true }  // ← añadido
+            );
+            console.log("eventUpdate interested:", eventUpdate?.interested);  // ← añadido
+        }
+
         return updatedEvent;
 
     } catch (err) {
         console.log(err);
         throw new Error(err);
     }
-},
-
-updateInvitation: async (eventId, invitationId, status) => {
-
-      try {
-       const updatedEvent = await Event.findOneAndUpdate(
-            { _id: eventId, "invitations._id": invitationId },
-            { $set: { "invitations.$.status": status } },
-            { returnDocument: 'after' }
-        );
-
-          // If accepted, add event to user's interested list
-        if (status === 'accepted' && updatedEvent) {
-            const acceptedInvitation = updatedEvent.invitations.id(invitationId);
-            await User.findByIdAndUpdate(
-                acceptedInvitation.to,   // ← from your invitation subdocument
-                { $push: { interested: eventId } }  // ← check your User schema field name
-            );
-        }
-
-        
-        return updatedEvent;
-
-    } catch (err) {
-        console.log(err);
-        throw new Error(err);
-    }     
-
-    //findOneAndUpdate instead of findByIdAndUpdate — you need to search by two fields at the same time (eventId and invitationId)
-    // invitations.$.status - $ the invitation of the invitationId
-    //$set: udpate , $push: add new 
-
 }
 }
 
