@@ -187,14 +187,17 @@ const eventService = {
 
             //Option 2: return only the invitation with the name of the event
 
-          return eventsInvitationFrom
-    .flatMap(event => event.invitations
-        .map(inv => ({
-            ...inv.toObject(),
-            eventName: event.name
-        }))
-    );
-
+            return eventsInvitationFrom
+            .flatMap(event => {
+                return event.invitations
+                    .filter(inv => {
+                        return inv.from && inv.from._id.toString() === userId.toString();
+                    })
+                    .map(inv => ({
+                        ...inv.toObject(),
+                        eventName: event.name
+                    }));
+            });
             // flatMap does the map and then flattens one level.
             // 1. invitationFrom is an array of events, flatMap iterates over each event
             //    and flattens the final result into a single array
@@ -230,6 +233,7 @@ const eventService = {
 
             return eventsInvitationTo
               .flatMap(event => event.invitations
+                .filter(inv => inv.to._id.toString() === userId.toString())
                 .map(inv => ({
                     ...inv.toObject(),
                     eventName: event.name,
