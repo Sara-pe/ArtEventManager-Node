@@ -60,7 +60,7 @@ export const EventList = ({ onNmbEvents, search }) => {
         <div className={styles.listCards}>
 
             {data && allEvents.map((event, index) => (
-                <EventCard key={event._id} event={event} index={index} />
+                <EventCard key={event._id} event={event} index={index} currentUserId={data.userId}/>
             ))
             }
         </div>

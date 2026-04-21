@@ -5,15 +5,25 @@ import { useParams } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 
 import { ModalShare } from './components/ModalShare'
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { useAtom } from 'jotai'
+import { saveAtom } from '../../atoms/token.atom'
+
+
 
 export const EventDetail = () => {
 
     const { id } = useParams();
 
+    const [token] = useAtom(saveAtom)
+    const currentUserId = token ? JSON.parse(atob(token.split('.')[1])).id : null
+
     const [isLoading, setLoading] = useState(true);
     const [event, setEvent] = useState('')
     const [error, setError] = useState(false)
+
+
 
     const [showModal, setShowModal] = useState(false)
 
@@ -60,7 +70,12 @@ export const EventDetail = () => {
 
     const interested = event.interested ?? [];
     const count = interested.length;
-    console.log('event.type:', event.type)
+
+    const attendees = [event.createdBy, ...interested].filter(
+        user => user._id.toString() !== currentUserId?.toString()
+    );
+
+    //toString() because the ids are ObjectId and you cannot compare objectIds
 
     return (
         <div className={styles.page}>
@@ -124,7 +139,7 @@ export const EventDetail = () => {
                         {/* ---- */}
 
                         <div className={styles.interested}>
-                            <p className={styles.nmbInterested}>+{event.interested.length}</p>
+                            <p className={styles.nmbInterested}>+{attendees.length}</p>
 
 
                             {count === 0 && (
@@ -134,14 +149,14 @@ export const EventDetail = () => {
                             {count > 0 && count <= 2 && (
                                 <div>
                                     <p>
-                                        {interested.map(user => user.name).join(', ')} will go</p>
+                                        {attendees.map(user => user.name).join(', ')} will go</p>
                                 </div>
                             )}
 
                             {count > 2 && (
                                 <div>
                                     <p>
-                                        {interested.slice(0, 2).map(user => user.name).join(', ')} and {count - 2} more will go
+                                        {attendees.slice(0, 2).map(user => user.name).join(', ')} and {count - 2} more will go
                                     </p>
                                 </div>
                             )}
