@@ -56,6 +56,19 @@ const userService = {
             {headers: { Authorization: `Bearer ${token}` }
         })
         return response.data
+    },
+
+    deleteFriend: async (friendId) => {
+        const token = getDefaultStore().get(saveAtom)
+
+        const payload = JSON.parse(atob(token.split('.')[1]))
+        const userId = payload.id
+
+
+        const response = await axios.delete(`http://localhost:3000/api/users/${userId}/friends/${friendId}`, 
+            {headers: { Authorization: `Bearer ${token}` }
+        })
+        return response.data
     }
 
 }
