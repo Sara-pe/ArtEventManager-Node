@@ -77,7 +77,7 @@ const eventService = {
     updateInvitation: async (inviteId, eventId, status) => {
         const token = getDefaultStore().get(saveAtom)
 
-        const response = axios.patch(`http://localhost:3000/api/events/${eventId}/invitations/${inviteId}`,
+        const response = await axios.patch(`http://localhost:3000/api/events/${eventId}/invitations/${inviteId}`,
             { status },  // same as { status: status }
             { headers: { Authorization: `Bearer ${token}` } }
 
@@ -89,7 +89,7 @@ const eventService = {
     deleteEvent: async (eventId) => {
         const token = getDefaultStore().get(saveAtom)
 
-        const response = axios.delete(`http://localhost:3000/api/events/${eventId}`,
+        const response = await axios.delete(`http://localhost:3000/api/events/${eventId}`,
             { headers: { Authorization: `Bearer ${token}` } }
 
         )
