@@ -3,12 +3,11 @@ import userService from '../../../service/user.service'
 import eventService from '../../../service/event.service'
 import { useState, useEffect } from 'react'
 
-export const ModalShare = ({ event, onClose }) => {
+export const ModalShare = ({ event, attendees, onClose }) => {
 
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
     const [friends, setFriends] = useState([]);
-
 
 
     useEffect(() => {
@@ -16,8 +15,9 @@ export const ModalShare = ({ event, onClose }) => {
         const fetchData = async () => {
             try {
                 const user = await userService.getById()
-                setFriends(user.friends)
-
+                const receivers= user.friends.filter(receiver => !attendees.some(attendee => attendee._id === receiver._id))
+                setFriends(receivers)
+                setLoading(false) 
             } catch (err) {
 
                 setError(true)

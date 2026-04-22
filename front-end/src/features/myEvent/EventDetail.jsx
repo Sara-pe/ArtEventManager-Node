@@ -189,7 +189,7 @@ export const EventDetail = () => {
 
                     </div>
                     {showModal &&
-                        <ModalShare key={event._id} event={event} onClose={() => setShowModal(false)} />}
+                        <ModalShare key={event._id} event={event} attendees={attendees} onClose={() => setShowModal(false)} />}
 
                     <div className={styles.btns}>
                         <button className={styles.btnShare} onClick={() => { setShowModal(true) }}>Share Event</button>
