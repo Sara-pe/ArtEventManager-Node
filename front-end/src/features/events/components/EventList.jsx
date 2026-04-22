@@ -40,9 +40,11 @@ export const EventList = ({ onNmbEvents, search }) => {
         }
     }, [data])
 
+
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>Something went wrong</p>
     if (!data) return null
+   
 
     // All events sorted from most recent
 

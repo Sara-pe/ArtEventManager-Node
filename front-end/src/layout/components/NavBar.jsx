@@ -20,7 +20,7 @@ export const NavBar = () => {
             <NavLink to="/"><img src="/icons/home.png" alt="Home" /></NavLink>
             <NavLink to="/friends"><img src="/icons/friends.png" alt="Friends" /></NavLink>
             <NavLink to="/agenda"><img src="/icons/agenda.png" alt="Agenda" /></NavLink>
-            <NavLink to="/settings"><img src="/icons/settings.png" alt="Settings" /></NavLink>
+            <NavLink to=""><img src="/icons/settings.png" alt="Settings" /></NavLink>
             
             <button onClick={handleLogOut}><img src="/icons/logout.png" alt="Log out" /></button>
 
