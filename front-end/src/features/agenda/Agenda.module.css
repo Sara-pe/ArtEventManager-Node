@@ -15,3 +15,62 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.header {
+    display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.country {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.country img {
+width: 28px;
+height: auto;
+}
+
+.carrousel {
+   overflow-x: auto;
+  width: 100%;
+}
+
+.eventList {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+
+}
+
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 260px;
+   min-width: 260px;  
+  flex-shrink: 0;    
+   border-right: 1px solid #e9e9e9; 
+  padding-right: 16px; 
+}
+
+
+.eventCard img {
+ width: 100%;
+ height: 326px;
+   object-fit: cover;
+}
+
+.eventCard button {
+ width: fit-content;
+}
+
+
+
