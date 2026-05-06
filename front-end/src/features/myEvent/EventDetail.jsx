@@ -112,7 +112,7 @@ export const EventDetail = () => {
                                         <div className={styles.intro}>
                                             <div>
                                                 <p className={styles.tag}>{event.type}</p>
-                                                <h2>{event.name}</h2>
+                                                <h2 className={styles.nameAdapted}>{event.name}</h2>
                                             </div>
                                             <p>{new Date(event.date).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</p>
                                         </div>

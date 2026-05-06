@@ -10,6 +10,7 @@ import { Friends } from "./features/friends/Friends"
 import { Users } from "./features/users/Users"
 import { EventDetail } from "./features/myEvent/EventDetail"
 import { Agenda } from "./features/agenda/Agenda"
+import { AgendaAddEvent } from "./features/agenda/components/AgendaAddEvent"
 
 
 /**
@@ -49,6 +50,7 @@ export const routes = [
                 { path: 'users', element: <ProtectedPage><Users/></ProtectedPage> },
             { path: 'notifications', element: <ProtectedPage> <Notifications /> </ProtectedPage> },
             { path: 'agenda', element: <ProtectedPage><Agenda/></ProtectedPage> },
+              { path: 'add-api', element: <ProtectedPage><AgendaAddEvent/></ProtectedPage> },
             { path: 'settings', element: <ProtectedPage>'Settings'</ProtectedPage> }
         ]
 

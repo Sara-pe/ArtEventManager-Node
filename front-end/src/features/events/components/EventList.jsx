@@ -44,7 +44,7 @@ export const EventList = ({ onNmbEvents, search }) => {
     if (isLoading) return <p>Loading...</p>
     if (error) return <p>Something went wrong</p>
     if (!data) return null
-   
+
 
     // All events sorted from most recent
 
@@ -53,7 +53,7 @@ export const EventList = ({ onNmbEvents, search }) => {
         if (!b.date) return -1
         return new Date(a.date) - new Date(b.date)
     })
-.filter(event => `${event.name} ${event.at} ${event.type}`.toLowerCase().includes(search.toLowerCase()))
+        .filter(event => `${event.name} ${event.at} ${event.type}`.toLowerCase().includes(search.toLowerCase()))
 
 
     //a.date is a string  "2026-04-23T00:00:00.000Z" (deduction not possible) -> new Date(...) makes it a Date object ("2026-04-24")
@@ -62,7 +62,7 @@ export const EventList = ({ onNmbEvents, search }) => {
         <div className={styles.listCards}>
 
             {data && allEvents.map((event, index) => (
-                <EventCard key={event._id} event={event} index={index} currentUserId={data.userId}/>
+                <EventCard key={event._id} event={event} index={index} currentUserId={data.userId} />
             ))
             }
         </div>
