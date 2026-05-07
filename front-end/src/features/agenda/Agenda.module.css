@@ -282,3 +282,181 @@ gap: 4px;
   font-size: 12px;
   text-decoration: none;
 }
+
+
+
+/* ---------- EventDetail ---------- */
+
+
+.title { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative; 
+    width: 100%; 
+}
+
+.prevArrow { 
+    height: 14px; 
+    width: auto; 
+    position: absolute; 
+    left: 8px; 
+}
+
+.eventDetails { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 28px; 
+}
+
+.cardIntro { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+     width: 100%;
+}
+
+.cardIntro img { 
+  width: 80%;
+  height: auto;
+}
+
+
+
+.tag { 
+    color: black; 
+    border-radius: 200px; 
+    border: 1px solid #000; 
+    padding: 1px 8px; 
+    width: fit-content; 
+}
+
+.nameAdapted { 
+    font-size: 20px; 
+    width: 80%;
+    text-align: center;
+ 
+}
+
+.infoContainer { 
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.locationContainer { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 12px; 
+    align-items: center; 
+    justify-content: flex-start; 
+}
+
+.at { 
+    color: #000; 
+    font-size: 16px; 
+    font-weight: 400; 
+}
+
+.hour { 
+    color: #000; 
+    text-align: right; 
+    font-size: 24px; 
+    font-weight: 400; 
+}
+
+.location { 
+    margin-top: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+}
+
+.contAddress { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: flex-start; 
+}
+
+.maps { 
+    border-radius: 32px; 
+    border: none; 
+}
+
+.descripContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.textCollapsed {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  max-height: 208px;
+ overflow-y: hidden;
+}
+
+.textExpanded {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  height: fit-content
+ 
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scheduleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+
+  background-color: #EAF1F3;
+
+    margin-left: -16px;
+  margin-right: -16px;
+  padding: 16px;
+ 
+}
+
+
+.scheduleContainer div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+ 
+}
+
+.btnShare {
+    display: flex;
+    height: 44px;
+    padding: 6px 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: #000;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.btnShare:hover {
+  color: white;
+
+}

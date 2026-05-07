@@ -21,6 +21,10 @@ export const AgendaAddEvent = () => {
     }
 
 
+    console.log(event.translations?.en?.longdescr)
+     console.log(event.translations?.en?.shortdescr)
+     console.log(event.translations?.en?.shortdescr)
+
 
     return (
 
@@ -113,7 +117,7 @@ export const AgendaAddEvent = () => {
                             <div className={styles.sourceRow}>
                                
                                     <p>More details on </p>
-                                <a className={styles.linkVB} href={event?.translations?.en?.agenda_url} target="_blank">
+                                <a className={styles.linkVB} href={event?.translations?.en?.agenda_url} target="_blank" rel="noopener noreferrer">
                                     visit.brussels <img className={styles.imgLinkVB} src="/icons/link.png" alt="Link to visit.brussles" />
                                 </a>
                                 
@@ -123,6 +127,8 @@ export const AgendaAddEvent = () => {
 
                         <button className={styles.btn} type="submit">Add Event</button>
                     </div>
+
+            
 
                 </form>
 
