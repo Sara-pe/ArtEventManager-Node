@@ -9,7 +9,7 @@ export const RecCard = ({ index, event }) => {
     return (
         <div className={styles.eventCard}>
 
-            <img src={Array.isArray(event.media) ? event.media?.[0]?.link : event.media?.link} alt={event.translations?.en?.name} />
+            <img src={ (Array.isArray(event.media) ? event.media?.[0]?.link : event.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+' } alt={event.translations?.en?.name} />
 
             {(event?.date_end === event?.date_start) ? <p> {new Date(event.date_start).toLocaleDateString('en-GB', {
                 weekday: 'short',

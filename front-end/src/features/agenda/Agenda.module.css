@@ -27,6 +27,16 @@
 }
 
 
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ justify-content: flex-start;
+ align-items: flex-start;
+  gap: 88px;
+}
+
+
 
 .country {
   display: flex;
@@ -41,15 +51,26 @@
   height: auto;
 }
 
+.containerRec {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .carrousel {
   overflow-x: auto;
   width: 100%;
+   height: 100%;
 }
 
 .eventList {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 16px;
+  height: 100%;
 
 
 }
@@ -57,12 +78,13 @@
 .eventCard {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start; 
   gap: 8px;
   width: 260px;
-  min-width: 260px;
   flex-shrink: 0;
   border-right: 1px solid #e9e9e9;
   padding-right: 16px;
+  height: 490px;
 }
 
 
@@ -70,6 +92,13 @@
   width: 100%;
   height: 326px;
   object-fit: cover;
+}
+
+.eventCard h3 {
+   display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .btnFit {

@@ -1,6 +1,8 @@
 import styles from './Agenda.module.css'
 import { useState } from 'react'
 import { Rec1 } from './components/Rec1'
+import { Rec2 } from './components/Rec2'
+import { Rec3 } from './components/Rec3'
 
 export const Agenda = () => {
 
@@ -13,20 +15,24 @@ export const Agenda = () => {
 
                 <div className={styles.header}>
 
-                <p>{date.toLocaleDateString('en-GB', {
-                    weekday: 'short',
-                    day: 'numeric',
-                    month: 'long'
-                }).toUpperCase()}</p>
+                    <p>{date.toLocaleDateString('en-GB', {
+                        weekday: 'short',
+                        day: 'numeric',
+                        month: 'long'
+                    }).toUpperCase()}</p>
 
-                <div className={styles.country}>
-                    <img src="/imgs/flag.png" alt="Belgian flag" />
-                    <h1>Belgium</h1>
+                    <div className={styles.country}>
+                        <img src="/imgs/flag.png" alt="Belgian flag" />
+                        <h1>Belgium</h1>
+                    </div>
                 </div>
+
+                <div className={styles.content}>
+ <Rec3 />
+                    <Rec1 />
+                    <Rec2 />
+                   
                 </div>
-
-                <Rec1/>
-
             </div>
         </div>
     )

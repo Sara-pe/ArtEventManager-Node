@@ -44,12 +44,12 @@ export const AgendaAddEvent = () => {
                         <div className={styles.fields}>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'name'}>Event's name</label>
-                                <input id={id + 'name'} type="text" name="name" className={styles.input} defaultValue={event?.translations?.en?.name} />
+                                <input id={id + 'name'} type="text" name="name" className={styles.input} defaultValue={event?.translations?.en?.name} required/>
                             </div>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'type'}>Type</label>
 
-                                <select id={id + 'type'} name="type" className={styles.select}
+                                <select id={id + 'type'} name="type" className={styles.select} required
 
                                     defaultValue={
                                         [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 119].includes(event?.categories?.main?.id) ? 'Cinema' :
@@ -74,13 +74,13 @@ export const AgendaAddEvent = () => {
 
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'where'}>Where?</label>
-                                <input id={id + 'where'} type="text" name='at' className={styles.input} defaultValue={event?.place?.translations?.en?.name} />
+                                <input id={id + 'where'} type="text" name='at' className={styles.input} defaultValue={event?.place?.translations?.en?.name} required/>
                             </div>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'date'}>Date</label>
 
-                                {(event?.date_end === event?.date_start) ? <input id={id + 'date'} type="date" name='date' className={styles.input} defaultValue={event?.date_start} /> :
-                                    <> <input id={id + 'date'} type="date" name='date' className={styles.input} />
+                                {(event?.date_end === event?.date_start) ? <input id={id + 'date'} type="date" name='date' className={styles.input} defaultValue={event?.date_start} required /> :
+                                    <> <input id={id + 'date'} type="date" name='date' className={styles.input} required/>
                                         <p className={styles.remark}>
                                             This event is ongoing from {new Date(event?.date_start).toLocaleDateString('en-GB', {
                                                 day: '2-digit',
@@ -98,17 +98,17 @@ export const AgendaAddEvent = () => {
                             </div>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'time'}>What time?</label>
-                                <input id={id + 'time'} type="text" name='hour' className={styles.input} />
+                                <input id={id + 'time'} type="text" name='hour' className={styles.input} required />
 
                             </div>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'city'}>City</label>
-                                <input id={id + 'city'} type="text" name='city' className={styles.input} defaultValue='Brussels' />
+                                <input id={id + 'city'} type="text" name='city' className={styles.input} defaultValue='Brussels' required />
                             </div>
 
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'address'}>Address</label>
-                                <input id={id + 'address'} type="text" name='address' className={styles.input} defaultValue={event?.place?.translations?.en?.address_line1} />
+                                <input id={id + 'address'} type="text" name='address' className={styles.input} defaultValue={event?.place?.translations?.en?.address_line1} required/>
                             </div>
                             <div className={styles.sourceRow}>
                                
@@ -131,3 +131,5 @@ export const AgendaAddEvent = () => {
     )
 
 }
+
+//*! ------------------ input fields need to be filled to submit!!! ---------
