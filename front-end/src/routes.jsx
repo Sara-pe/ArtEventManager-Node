@@ -12,6 +12,7 @@ import { EventDetail } from "./features/myEvent/EventDetail"
 import { Agenda } from "./features/agenda/Agenda"
 import { AgendaAddEvent } from "./features/agenda/components/AgendaAddEvent"
 import { EventApiDetail } from './features/agenda/components/EventApiDetail'
+import { Error } from './layout/Error'
 
 
 /**
@@ -53,7 +54,8 @@ export const routes = [
             { path: 'agenda', element: <ProtectedPage><Agenda/></ProtectedPage> },
               { path: 'add-api', element: <ProtectedPage><AgendaAddEvent/></ProtectedPage> },
             { path: 'settings', element: <ProtectedPage>'Settings'</ProtectedPage> },
-            { path: 'eventsApi/:id', element: <ProtectedPage><EventApiDetail/></ProtectedPage> }
+            { path: 'eventsApi/:id', element: <ProtectedPage><EventApiDetail/></ProtectedPage> },
+             { path: 'error', element: <ProtectedPage><Error/></ProtectedPage> }
         ]
 
     }

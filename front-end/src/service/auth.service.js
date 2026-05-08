@@ -1,10 +1,19 @@
 import axios from 'axios';
 
 const authService = {
-    register: async (userData) => {
-
-        const response = await axios.post("http://localhost:3000/api/auth/register", userData)
-        return response.data;
+  register: async (userData) => {
+        try {
+            const response = await axios.post("http://localhost:3000/api/auth/register", userData);
+            return response.data;
+            
+        } catch (error) {
+            const message = error.response?.data?.message || "Something went wrong";
+            const status = error.response?.status;
+            
+            const err = new Error(message);
+            err.status = status;
+            throw err;
+        }
     },
 
     login: async ({ email, password }) => {

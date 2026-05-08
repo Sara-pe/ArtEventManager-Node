@@ -3,21 +3,30 @@ import { NavLink } from 'react-router'
 import { useNavigate } from 'react-router';
 import styles from '../Auth.module.css'
 import authService from '../../../service/auth.service'
+import { useState } from 'react';
 
 export const RegisterForm = () => {
     const id = useId();
     const navigate = useNavigate();
 
+    const [error, setError] = useState('')
+
     const handleRegisterSubmit = async (formData) => {
         console.log(formData)
-
+        setError('');
         //Convert into an JS object
-        const data=Object.fromEntries(formData.entries())
-
-        //Call the service 
-        await authService.register(data);
-
-        navigate('/auth/login');
+        const data = Object.fromEntries(formData.entries())
+        try {
+            //Call the service 
+            await authService.register(data);
+            navigate('/auth/login');
+        } catch (err) {
+            if (err.status === 409) {
+                setError(err.message);
+            } else {
+                navigate('/error');
+            }
+        }
     }
 
     return (
@@ -40,6 +49,8 @@ export const RegisterForm = () => {
                         <label htmlFor={id + 'password'}>Password</label>
                         <input id={id + 'password'} type="password" name='password' className={styles.input} />
                     </div>
+
+                    {error && <div className='error'><p>{error}</p> </div>}
                 </div>
 
                 <button className={styles.btn} type="submit">Submit</button>
