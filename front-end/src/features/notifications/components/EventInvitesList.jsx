@@ -42,7 +42,7 @@ export const EventInvitesList = ({ onNmbInvites }) => {
 
     }, [data])
 
-    if (error) return (<p>somthing went wrong</p>)
+    if (error) return (<p>Something went wrong</p>)
     if (loading) return <p>Loading...</p>
 
     console.log('Event invites:', data)

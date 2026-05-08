@@ -64,8 +64,14 @@ export const EventDetail = () => {
     }
 
 
-    if (isLoading) return <p>Loading...</p>
-    if (error) return <p>Something went wrong</p>
+    if (isLoading) return <div className={styles.page}>
+        <div className={styles.container}>
+            <p>Loading...</p></div></div>
+
+    if (error) return <div className={styles.page}>
+        <div className={styles.container}>
+            <p>Something went wrong</p></div></div>
+
     if (!event) return null
 
     const interested = event.interested ?? [];

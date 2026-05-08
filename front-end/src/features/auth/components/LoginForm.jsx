@@ -2,6 +2,7 @@ import { useId } from 'react';
 import { NavLink } from 'react-router'
 import styles from '../Auth.module.css'
 import { useNavigate } from 'react-router'
+import { useState } from 'react';
 
 import authService from '../../../service/auth.service'
 
@@ -16,6 +17,8 @@ export const LoginForm = () => {
     const id = useId();
     const navigate = useNavigate();
 
+    const [error, setError] = useState('')
+
     const setToken = useSetAtom(saveAtom)
     const setNotifications = useSetAtom(NotificationAtom)
 
@@ -24,15 +27,23 @@ export const LoginForm = () => {
         //Convert into an JS object
         const data = Object.fromEntries(formData.entries());
 
-        //Receive a reply from the service 
-        const reply = await authService.login(data);
+        try {
+            const reply = await authService.login(data);
 
-        console.log(reply.token);
-        console.log(reply.nmbNotifications);
+            console.log(reply.token);
+            console.log(reply.nmbNotifications);
 
-        setToken(reply.token);
-        setNotifications(reply.nmbNotifications);
-        navigate('/');
+            setToken(reply.token);
+            setNotifications(reply.nmbNotifications);
+            navigate('/');
+
+        } catch (err) {
+            if (err.status === 401) {
+                setError(err.message);
+            } else {
+                navigate('/error');
+            }
+        }
     }
 
     return (
@@ -48,6 +59,9 @@ export const LoginForm = () => {
                         <label htmlFor={id + 'password'}>Password</label>
                         <input id={id + 'password'} type="password" name='password' className={styles.input} />
                     </div>
+
+                     {error && <div className='error'><p>{error}</p> </div>}
+
                 </div>
 
                 <button className={styles.btn} type="submit">Log in</button>

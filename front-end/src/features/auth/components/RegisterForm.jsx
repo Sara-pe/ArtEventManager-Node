@@ -12,12 +12,13 @@ export const RegisterForm = () => {
     const [error, setError] = useState('')
 
     const handleRegisterSubmit = async (formData) => {
+        
         console.log(formData)
         setError('');
         //Convert into an JS object
         const data = Object.fromEntries(formData.entries())
+
         try {
-            //Call the service 
             await authService.register(data);
             navigate('/auth/login');
         } catch (err) {

@@ -56,8 +56,14 @@ export const EventApiDetail = () => {
     }, [data])
 
 
-    if (error) return <p>Something went wrong</p>
-    if (loading) return <p>Loading...</p>
+    if (loading) return <div className={styles.page}>
+        <div className={styles.container}>
+            <p>Loading...</p></div></div>
+
+    if (error) return <div className={styles.page}>
+        <div className={styles.container}>
+            <p>Something went wrong</p></div></div>
+
     if (!data) return null
 
 
@@ -159,13 +165,13 @@ export const EventApiDetail = () => {
                         )}
                     </div>
 
-                     <a className={styles.linkVB} href={data.translations?.en?.agenda_url} target="_blank" rel="noopener noreferrer">
-                    visit.brussels <img className={styles.imgLinkVB} src="/icons/link.png" alt="Link to visit.brussles" />
-                </a>
+                    <a className={styles.linkVB} href={data.translations?.en?.agenda_url} target="_blank" rel="noopener noreferrer">
+                        visit.brussels <img className={styles.imgLinkVB} src="/icons/link.png" alt="Link to visit.brussles" />
+                    </a>
                 </div>
 
 
-               
+
 
                 <div className={styles.location}>
 
