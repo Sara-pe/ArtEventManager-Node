@@ -60,9 +60,18 @@ export const EventApiDetail = () => {
         <div className={styles.container}>
             <p>Loading...</p></div></div>
 
-    if (error) return <div className={styles.page}>
-        <div className={styles.container}>
-            <p>Something went wrong</p></div></div>
+    if (error) return (
+        <div>
+            <div className='pageError'>
+                <div className='containerError'>
+
+                    <h2>We couldn't load this event</h2>
+                    <h3>It may have been removed or is temporarily unavailable.</h3>
+                    <NavLink className="btn-1" to='/agenda'>Go back</NavLink>
+
+                </div>
+            </div>
+        </div>)
 
     if (!data) return null
 
@@ -153,7 +162,7 @@ export const EventApiDetail = () => {
                                 : <p>{data.weekschema.translations?.en}</p>
                         ) : (
                             // Event-style: show specific dates and hours
-                            (Array.isArray(data.dates) ? data.dates : [data.dates]).map((date, i) => (
+                            (Array.isArray(data.dates) ? data.dates : data.dates ? [data.dates] : []).map((date, i) => (
                                 <p key={i}>
                                     {new Date(date.day).toLocaleDateString('en-GB', {
                                         weekday: 'short', day: 'numeric', month: 'short'

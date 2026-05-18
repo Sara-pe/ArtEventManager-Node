@@ -47,15 +47,15 @@ export const routes = [
 
             { index: true, element: <ProtectedPage><Home /></ProtectedPage> },
             { path: 'add', element: <ProtectedPage><AddEvent /></ProtectedPage> },
-              { path: 'events/:id', element: <ProtectedPage><EventDetail/></ProtectedPage> },
+            { path: 'events/:id', element: <ProtectedPage><EventDetail /></ProtectedPage> },
             { path: 'friends', element: <ProtectedPage><Friends /></ProtectedPage> },
-                { path: 'users', element: <ProtectedPage><Users/></ProtectedPage> },
+            { path: 'users', element: <ProtectedPage><Users /></ProtectedPage> },
             { path: 'notifications', element: <ProtectedPage> <Notifications /> </ProtectedPage> },
-            { path: 'agenda', element: <ProtectedPage><Agenda/></ProtectedPage> },
-              { path: 'add-api', element: <ProtectedPage><AgendaAddEvent/></ProtectedPage> },
+            { path: 'agenda', element: <ProtectedPage><Agenda /></ProtectedPage> },
+            { path: 'add-api', element: <ProtectedPage><AgendaAddEvent /></ProtectedPage> },
             { path: 'settings', element: <ProtectedPage>'Settings'</ProtectedPage> },
-            { path: 'eventsApi/:id', element: <ProtectedPage><EventApiDetail/></ProtectedPage> },
-             { path: 'error', element: <ProtectedPage><Error/></ProtectedPage> }
+            { path: 'eventsApi/:id', element: <ProtectedPage><EventApiDetail /></ProtectedPage> },
+            { path: 'error', element: <ProtectedPage><Error /></ProtectedPage> }
         ]
 
     }

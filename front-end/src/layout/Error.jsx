@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 export const Error = () => {
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
+    
     return (
         <div className='pageError'>
             <div className='containerError'>

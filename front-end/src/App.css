@@ -292,3 +292,11 @@ a {
   align-items: center;
   gap: 24px;
 }
+
+.containerError h3, .containerError h2 {
+  text-align: center;
+}
+
+.containerError a {
+  text-decoration: none;
+}
