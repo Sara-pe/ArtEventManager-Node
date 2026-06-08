@@ -68,7 +68,7 @@ export const Rec4 = () => {
                     }
                 })
 
-
+console.log('events near you:', eventsNear.data.response.results.event)
                 setLoading(false)
                 setData(eventsNear.data.response.results.event)
 

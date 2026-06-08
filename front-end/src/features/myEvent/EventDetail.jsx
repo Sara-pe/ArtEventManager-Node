@@ -23,8 +23,6 @@ export const EventDetail = () => {
     const [event, setEvent] = useState('')
     const [error, setError] = useState(false)
 
-
-
     const [showModal, setShowModal] = useState(false)
 
     const navigate = useNavigate()
@@ -99,8 +97,6 @@ export const EventDetail = () => {
 
                 {/* Event Info */}
                 <div className={styles.eventDetails}>
-
-
 
                     {/* SVG CardIntro */}
                     <div className={styles.containerCardIntro}>

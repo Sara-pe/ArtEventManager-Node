@@ -22,8 +22,8 @@ export const AgendaAddEvent = () => {
 
 
     console.log(event.translations?.en?.longdescr)
-     console.log(event.translations?.en?.shortdescr)
-     console.log(event.translations?.en?.shortdescr)
+    console.log(event.translations?.en?.shortdescr)
+    console.log(event.translations?.en?.shortdescr)
 
 
     return (
@@ -35,20 +35,21 @@ export const AgendaAddEvent = () => {
 
                 <div className={styles.headerForm}>
                     <div className={styles.title}>
-                        <h1>Add Event</h1>
 
+                  
+                      <h4 className={styles.promptEvent}>Pick your date and time for</h4>
+                       <h3 className={styles.nameEvent}>{event?.translations?.en?.name}</h3> 
+                       
                         <NavLink to="/agenda"> <img className={styles.prevArrow} src="/icons/prev.png" alt="Previous" /> </NavLink>
                     </div>
                 </div>
-
-
 
                 <form className={styles.form} action={handleAddSubmit}>
                     <div className={styles.btnFields}>
                         <div className={styles.fields}>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'name'}>Event's name</label>
-                                <input id={id + 'name'} type="text" name="name" className={styles.input} defaultValue={event?.translations?.en?.name} required/>
+                                <input id={id + 'name'} type="text" name="name" className={styles.input} defaultValue={event?.translations?.en?.name} required />
                             </div>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'type'}>Type</label>
@@ -78,13 +79,13 @@ export const AgendaAddEvent = () => {
 
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'where'}>Where?</label>
-                                <input id={id + 'where'} type="text" name='at' className={styles.input} defaultValue={event?.place?.translations?.en?.name} required/>
+                                <input id={id + 'where'} type="text" name='at' className={styles.input} defaultValue={event?.place?.translations?.en?.name} required />
                             </div>
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'date'}>Date</label>
 
                                 {(event?.date_end === event?.date_start) ? <input id={id + 'date'} type="date" name='date' className={styles.input} defaultValue={event?.date_start} required /> :
-                                    <> <input id={id + 'date'} type="date" name='date' className={styles.input} required/>
+                                    <> <input id={id + 'date'} type="date" name='date' className={styles.input} required />
                                         <p className={styles.remark}>
                                             This event is ongoing from {new Date(event?.date_start).toLocaleDateString('en-GB', {
                                                 day: '2-digit',
@@ -112,23 +113,23 @@ export const AgendaAddEvent = () => {
 
                             <div className={styles.fieldGroup}>
                                 <label htmlFor={id + 'address'}>Address</label>
-                                <input id={id + 'address'} type="text" name='address' className={styles.input} defaultValue={event?.place?.translations?.en?.address_line1} required/>
+                                <input id={id + 'address'} type="text" name='address' className={styles.input} defaultValue={event?.place?.translations?.en?.address_line1} required />
                             </div>
                             <div className={styles.sourceRow}>
-                               
-                                    <p>More details on </p>
+
+                                <p>More details on </p>
                                 <a className={styles.linkVB} href={event?.translations?.en?.agenda_url} target="_blank" rel="noopener noreferrer">
                                     visit.brussels <img className={styles.imgLinkVB} src="/icons/link.png" alt="Link to visit.brussles" />
                                 </a>
-                                
-                                
+
+
                             </div>
                         </div>
 
                         <button className={styles.btn} type="submit">Add Event</button>
                     </div>
 
-            
+
 
                 </form>
 

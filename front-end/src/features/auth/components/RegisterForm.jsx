@@ -44,8 +44,8 @@ export const RegisterForm = () => {
                     </div>
 
                     <div className={styles.fieldGroup}>
-                        <select htmlFor={id + 'neighborhood'} required>Neighborhood</select>
-                        <select name="neighborhood">
+                        <label htmlFor={id + 'neighborhood'} required>Neighborhood</label>
+                        <select className={styles.select} name="neighborhood">
                             <option value="">Select your neighborhood</option>
                             <option value="1000">1000 - Brussels Centre</option>
                             <option value="1020">1020 - Laeken</option>

@@ -25,7 +25,7 @@ export const Agenda = () => {
 
                     <div className={styles.country}>
                         <img src="/imgs/flag.png" alt="Belgian flag" />
-                        <h1>Belgium</h1>
+                        <h1>Brussels</h1>
                     </div>
                 </div>
 

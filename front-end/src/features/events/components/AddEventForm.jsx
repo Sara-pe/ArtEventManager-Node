@@ -36,7 +36,6 @@ export const AddEventForm = () => {
                             <option value="Talk">Talk</option>
                             <option value="Workshop">Workshop</option>
                             <option value="Cinema">Cinema</option>
-
                         </select>
                     </div>
 

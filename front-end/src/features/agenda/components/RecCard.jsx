@@ -13,7 +13,9 @@ export const RecCard = ({ index, event }) => {
 
             <img src={(Array.isArray(event.media) ? event.media?.[0]?.link : event.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'} alt={event.translations?.en?.name} />
 
-            {(event?.date_end === event?.date_start) ? <p> {new Date(event.date_start).toLocaleDateString('en-GB', {
+            {event?.is_permanent ? <p>Open year-round</p> : 
+            
+            (event?.date_end === event?.date_start) ? <p> {new Date(event.date_start).toLocaleDateString('en-GB', {
                 weekday: 'short',
                 day: 'numeric',
                 month: 'short'

@@ -265,6 +265,7 @@
     background: #000;
     color: white;
     font-size: 16px;
+    margin: 0px 20px 20px 20px;
 }
 
 .btnDelete {
@@ -303,7 +304,6 @@
     margin-bottom: 160px;
     gap: 20px;
     width: 96%;
-    padding: 20px;
     border-radius: 32px;
     background-color: rgb(255, 255, 255);
     max-height: 640px;
@@ -314,6 +314,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+     padding: 20px 20px 0px 20px;
 
 }
 
@@ -345,13 +346,57 @@
     display: flex;
     width: 100%;
     height: auto;
-    padding: 16px;
+    padding: 8px 20px;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+ 
+}
+
+
+.card:hover {
+    background-color: rgba(217, 217, 217, 0.56);
+
+}
+
+.card > div {
+    display: flex;
+    
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 8px;
-    border-radius: 20px;
-    background-color: #EAF1F3;
+   
+  
+}
+
+/*input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+     accent-color: #065981;
+}*/
+
+
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--dark-gray);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checked {
+    background-color: #065981;
+    border-color: #065981;
+}
+
+.checkbox img {
+    width: 10px;
+    height: 10px;
 }
 
 .card h3 {
@@ -375,7 +420,7 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: white;
+    background-color: var(--light-gray);
     border-radius: 50px;
 }
 
@@ -390,6 +435,3 @@
     color: black;
 }
 
-.selected {
-    background-color: #aed7e2;
-}

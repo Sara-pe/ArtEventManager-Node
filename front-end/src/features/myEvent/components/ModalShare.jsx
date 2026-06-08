@@ -15,9 +15,9 @@ export const ModalShare = ({ event, attendees, onClose }) => {
         const fetchData = async () => {
             try {
                 const user = await userService.getById()
-                const receivers= user.friends.filter(receiver => !attendees.some(attendee => attendee._id === receiver._id))
+                const receivers = user.friends.filter(receiver => !attendees.some(attendee => attendee._id === receiver._id))
                 setFriends(receivers)
-                setLoading(false) 
+                setLoading(false)
             } catch (err) {
 
                 setError(true)
@@ -50,29 +50,38 @@ export const ModalShare = ({ event, attendees, onClose }) => {
 
 
     return (
-         <div className={styles.modalContainer}>
-        <div className={styles.modal}>
-            <div className={styles.headerModal}>
-                <div className={styles.headerText}>
-                    <h1>Share event</h1>
-                    <p>{event.name} @{event.at}</p>
-                </div>
-               <button onClick={onClose}><img src="/icons/close.svg" alt="Close" /></button> 
-            </div>
-
-            <div className={styles.friendsList}>
-                {friends.map(friend => <div
-                    key={friend._id}
-                    className={`${styles.card} ${selected.includes(friend._id) ? styles.selected : ''}`}
-                    onClick={() => onSelectFriend(friend._id)}
-                >
-                    <div className={styles.initials}>
-                        <p>{friend.name[0]}{friend.lastname[0]}</p>
+        <div className={styles.modalContainer}>
+            <div className={styles.modal}>
+                <div className={styles.headerModal}>
+                    <div className={styles.headerText}>
+                        <h1>Share event</h1>
+                        <p>{event.name} @{event.at}</p>
                     </div>
-                    <p className={styles.to}>{friend.name} {friend.lastname} </p>
-                </div>)}
-            </div>
-            <button className={styles.btnShare} onClick={handleSend}>Share</button>
-        </div>  </div>
+                    <button onClick={onClose}><img src="/icons/close.svg" alt="Close" /></button>
+                </div>
+
+                <div className={styles.friendsList}>
+                    {friends.map(friend => <div
+                        key={friend._id}
+                        className={styles.card}
+                        onClick={() => onSelectFriend(friend._id)}>
+                        <div>
+                            <div className={styles.initials}>
+                                <p>{friend.name[0]}{friend.lastname[0]}</p>
+                            </div>
+                            <p className={styles.to}>{friend.name} {friend.lastname} </p>
+                        </div>
+                        <button
+                            role="checkbox"
+                            aria-checked={selected.includes(friend._id)}
+                            aria-label={`Select ${friend.name}`}
+                            className={`${styles.checkbox} ${selected.includes(friend._id) ? styles.checked : ''}`}
+                        >
+                            {selected.includes(friend._id) && <img src="/icons/check.png" style={{ width: '10px' }} />}
+                        </button>
+                    </div>)}
+                </div>
+                <button className={styles.btnShare} onClick={handleSend}>Share</button>
+            </div>  </div>
     )
 }

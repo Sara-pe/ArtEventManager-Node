@@ -99,10 +99,6 @@ export const EventApiDetail = () => {
                         <img src={(Array.isArray(data.media) ? data.media?.[0]?.link : data.media?.link) || 'https://dummyimage.com/243x326/ccd6d9/266582.png&text=+'} alt={data.translations?.en?.name} />
 
                     </div>
-
-
-
-
                 </div>
 
 
